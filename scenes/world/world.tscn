@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj4vdaxwdewiu"]
+
+[ext_resource type="Script" path="res://scripts/world/collision_polygon_2d.gd" id="1_4hx4q"]
+[ext_resource type="PackedScene" uid="uid://ia6ngi8g5tqx" path="res://scenes/player/player.tscn" id="1_vr02h"]
+
+[node name="world" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(2309, -3540, -1617, -3389, -1663, -2135, -1814, 1791, 2203, 2063, -1300, 1308, -1104, -2196, 2022, -2211, 2234, 281, 2218, 2063, 3094, 2078, 3140, -1667, 3200, -3495)
+script = ExtResource("1_4hx4q")
+
+[node name="player" parent="." instance=ExtResource("1_vr02h")]
+position = Vector2(-8, -14)
