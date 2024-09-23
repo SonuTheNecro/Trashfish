@@ -1,13 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://ia6ngi8g5tqx"]
+[gd_scene load_steps=6 format=3 uid="uid://ia6ngi8g5tqx"]
 
-[ext_resource type="Texture2D" uid="uid://bv4qxbqrq4i8y" path="res://art/player/temp_shark_player.png" id="1_2jop5"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_edec7"]
+[ext_resource type="Texture2D" uid="uid://phe1ormfklim" path="res://art/player/player.png" id="2_et8aj"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_h6405"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_osloo"]
+atlas = ExtResource("2_et8aj")
+region = Rect2(0, 0, 144, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0o1mn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_2jop5")
+"texture": SubResource("AtlasTexture_osloo")
 }],
 "loop": true,
 "name": &"default",
@@ -15,17 +19,17 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1cqym"]
-radius = 544.0
-height = 2006.0
+radius = 32.0
+height = 140.0
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_edec7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -505)
-sprite_frames = SubResource("SpriteFrames_h6405")
+position = Vector2(7, -33)
+sprite_frames = SubResource("SpriteFrames_0o1mn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-9, -468)
+position = Vector2(5, -31)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_1cqym")
