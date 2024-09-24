@@ -33,3 +33,7 @@ sprite_frames = SubResource("SpriteFrames_0o1mn")
 position = Vector2(5, -31)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_1cqym")
+
+[node name="Health_Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Health_Timer" to="." method="decrease_health"]

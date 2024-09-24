@@ -1,7 +1,7 @@
 extends CharacterBody2D
 const speed : int = 200
 const acceleration : int = 20
-
+@export var health : int = 6
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,3 +25,11 @@ func handle_player_animation():
 func flip(value: bool):
 	if value != $AnimatedSprite2D.flip_h:
 		$AnimatedSprite2D.flip_h = value
+
+func decrease_health() :
+	self.health -= 1;
+	
+func increase_health():
+	self.health += 1;
+	if health > 10:
+		health = health
