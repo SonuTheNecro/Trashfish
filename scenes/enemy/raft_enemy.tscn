@@ -1,0 +1,117 @@
+[gd_scene load_steps=16 format=3 uid="uid://tnnxe3dimvi0"]
+
+[ext_resource type="Texture2D" uid="uid://c7tpy7v4e6jjo" path="res://art/enemy/raft.png" id="1_fen3x"]
+[ext_resource type="Texture2D" uid="uid://de03ac32yi2ee" path="res://art/enemy/awp.png" id="2_nk87i"]
+
+[sub_resource type="Animation" id="Animation_0sbso"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mydu5"]
+_data = {
+"idle": SubResource("Animation_0sbso")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6d7x7"]
+atlas = ExtResource("1_fen3x")
+region = Rect2(0, 0, 142, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpgry"]
+atlas = ExtResource("1_fen3x")
+region = Rect2(142, 0, 142, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pxtu"]
+atlas = ExtResource("1_fen3x")
+region = Rect2(284, 0, 142, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvpsy"]
+atlas = ExtResource("1_fen3x")
+region = Rect2(426, 0, 142, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pw3uq"]
+atlas = ExtResource("1_fen3x")
+region = Rect2(568, 0, 142, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vvid7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6d7x7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpgry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5pxtu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvpsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pw3uq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2p2p"]
+atlas = ExtResource("2_nk87i")
+region = Rect2(0, 0, 143, 68)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xi8r"]
+atlas = ExtResource("2_nk87i")
+region = Rect2(143, 0, 143, 68)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlqmg"]
+atlas = ExtResource("2_nk87i")
+region = Rect2(286, 0, 143, 68)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wa3uy"]
+atlas = ExtResource("2_nk87i")
+region = Rect2(0, 0, 143, 68)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_43jhp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2p2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xi8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlqmg")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wa3uy")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="raft_enemy" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mydu5")
+}
+
+[node name="raft" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -35)
+sprite_frames = SubResource("SpriteFrames_vvid7")
+animation = &"idle"
+
+[node name="gun" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-61, -24)
+scale = Vector2(0.301, 0.28)
+sprite_frames = SubResource("SpriteFrames_43jhp")
+animation = &"idle"
+flip_h = true
