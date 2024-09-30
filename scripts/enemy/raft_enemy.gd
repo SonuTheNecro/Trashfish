@@ -1,4 +1,7 @@
 extends Node2D
+@onready var raft = $raft
+@onready var gun = $gun
+@onready var shoot_timer = $shoot_timer
 
 
 # Called when the node enters the scene tree for the first time.
@@ -8,9 +11,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-
-
-func get_player_position() -> Vector2:
-	#print(get_node("player").global_position.x, ":", get_node("player").global_position.y)
-	return get_node("player").global_position
+	#if shoot_timer.wait_time > 0.01:
+	gun.set_gun_rotation()
