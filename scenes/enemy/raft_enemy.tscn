@@ -114,13 +114,14 @@ frame_progress = 0.486281
 
 [node name="gun" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-63, -24)
+position = Vector2(-55, -22)
 scale = Vector2(0.301, 0.28)
 sprite_frames = SubResource("SpriteFrames_43jhp")
 animation = &"idle"
-flip_h = true
 script = ExtResource("4_its3k")
 
 [node name="shoot_timer" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
+
+[connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]

@@ -18,5 +18,5 @@ script = ExtResource("1_4hx4q")
 position = Vector2(913, 319)
 
 [node name="raft_enemy" parent="." instance=ExtResource("4_0tkgk")]
-position = Vector2(1042, 581)
+position = Vector2(1690, 229)
 scale = Vector2(4.09, 4.09)

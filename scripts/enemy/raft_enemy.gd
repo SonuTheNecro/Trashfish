@@ -13,3 +13,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#if shoot_timer.wait_time > 0.01:
 	gun.set_gun_rotation()
+
+# After timer ends, have the gun fire a bullet towards the player and restart the timer
+func _on_shoot_timer_timeout() -> void:
+	$gun.play("fire")
+	pass

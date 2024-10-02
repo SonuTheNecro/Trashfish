@@ -10,6 +10,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	if self.health == 0:
+		player_death()
+		return
 	handle_player_input(delta)
 	handle_player_animation()
 	move_and_slide()
@@ -26,10 +29,15 @@ func flip(value: bool):
 	if value != $AnimatedSprite2D.flip_h:
 		$AnimatedSprite2D.flip_h = value
 
+func set_health(change : int):
+	self.health = change
+
 func decrease_health() :
 	self.health -= 1;
-	
+
 func increase_health():
 	self.health += 1;
 	if health > 10:
 		health = health
+func player_death():
+	print("ded")
