@@ -114,8 +114,8 @@ frame_progress = 0.486281
 
 [node name="gun" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-55, -22)
-scale = Vector2(0.301, 0.28)
+position = Vector2(-57, -21)
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_43jhp")
 animation = &"idle"
 script = ExtResource("4_its3k")
