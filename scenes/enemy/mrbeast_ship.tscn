@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bdrdrpgqc25qg"]
+[gd_scene load_steps=9 format=3 uid="uid://bdrdrpgqc25qg"]
 
 [ext_resource type="PackedScene" uid="uid://0ncg7uw24q8j" path="res://scenes/enemy/ship.tscn" id="1_u18oj"]
 [ext_resource type="Texture2D" uid="uid://bfhwnhiyweprk" path="res://art/enemy/beast_ship.png" id="2_4fwby"]
-[ext_resource type="PackedScene" uid="uid://byt03rernj7cq" path="res://scenes/enemy/drop.tscn" id="3_uu0p4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_urdrr"]
 atlas = ExtResource("2_4fwby")
@@ -53,7 +52,5 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -36)
+position = Vector2(0, -34.625)
 sprite_frames = SubResource("SpriteFrames_15il8")
-
-[node name="drop_component" parent="." instance=ExtResource("3_uu0p4")]
