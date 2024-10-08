@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://bdrdrpgqc25qg"]
+
+[ext_resource type="PackedScene" uid="uid://0ncg7uw24q8j" path="res://scenes/enemy/ship.tscn" id="1_u18oj"]
+[ext_resource type="Texture2D" uid="uid://bfhwnhiyweprk" path="res://art/enemy/beast_ship.png" id="2_4fwby"]
+[ext_resource type="PackedScene" uid="uid://byt03rernj7cq" path="res://scenes/enemy/drop.tscn" id="3_uu0p4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urdrr"]
+atlas = ExtResource("2_4fwby")
+region = Rect2(0, 0, 144, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnn1d"]
+atlas = ExtResource("2_4fwby")
+region = Rect2(144, 0, 144, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcdmd"]
+atlas = ExtResource("2_4fwby")
+region = Rect2(288, 0, 144, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pup0x"]
+atlas = ExtResource("2_4fwby")
+region = Rect2(432, 0, 144, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r74i2"]
+atlas = ExtResource("2_4fwby")
+region = Rect2(576, 0, 144, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_15il8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urdrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnn1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcdmd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pup0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r74i2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="mrbeast_ship" type="Node2D"]
+
+[node name="ship_component" parent="." instance=ExtResource("1_u18oj")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -36)
+sprite_frames = SubResource("SpriteFrames_15il8")
+
+[node name="drop_component" parent="." instance=ExtResource("3_uu0p4")]

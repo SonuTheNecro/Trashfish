@@ -2,12 +2,12 @@ extends Node2D
 @export var counter : int = 3
 @export var speed : int = 200
 @export var id : int
-var isMoving : bool = true
+var isMoving : bool = false
 var isBusy : bool = false
 var nextX : float
 var direction : bool = false
 
-const play_slot_scene = preload("res://scenes/enemy/trash_1")
+@export var spawn_scene : String
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	self.global_position.x = 0 
@@ -30,13 +30,15 @@ func _process(delta: float) -> void:
 		return
 	# We have arrived at our spot but we haven't dropped an item yet
 	if isMoving and isBusy:
-		var trash = play_slot_scene.instantiate()
-		trash.add_child(trash)
+		var drop = get_spawnable_drop()
+		get_parent().add_child(drop)
 		isMoving = false
 		return
 	if not isMoving and isBusy:
 		pass
 	
-	
+# Gets what type of drop we need to drop from the parent then we can pass it to this component
+func get_spawnable_drop():
+	get_parent().spawnable_drop().instantiate()
 	
 		
