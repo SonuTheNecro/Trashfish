@@ -14,31 +14,42 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print(get_parent().global_position.x, ":",get_parent().global_position.y)
+	#print(get_parent().global_position.x, ":",get_parent().global_position.y)
 	# IF we aren't moving and we aren't dropping items, then we should find a new spot to go
 	if not isMoving and not isBusy:
 		#nextX = randi() % 1100
-		nextX = 550
+		nextX = 550.0	
 		isMoving = true
 		direction = 1 if get_parent().global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
 		return
 	# We have a spot to go to but we aren't there yet
 	if isMoving and not isBusy:
 		self.get_parent().global_position.x += direction * speed * delta
-		if int(self.get_parent().global_position.x) == nextX:
+		print(int(self.get_parent().global_position.x),":",nextX)
+		if check_in_range(self.get_parent().global_position.x,nextX, speed * delta):
+			isMoving = false
 			isBusy = true
 		return
 	# We have arrived at our spot but we haven't dropped an item yet
-	if isMoving and isBusy:
+	if not isMoving and isBusy:
 		var drop = get_spawnable_drop()
 		self.add_child(drop)
-		isMoving = false
+		isMoving = true
 		return
-	if not isMoving and isBusy:
+	if isMoving and isBusy:
 		pass
 	
 # Gets what type of drop we need to drop from the parent then we can pass it to this component
 func get_spawnable_drop():
 	get_parent().spawnable_drop.instantiate()
 	
+
+func check_in_range(a : float, b : float , range : int ) -> bool:
+	if a > b:
+		if a - b < range:
+			return true
+	if a < b:
+		if b - a < range:
+			return true
+	return false
 		
