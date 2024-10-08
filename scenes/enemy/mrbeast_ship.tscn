@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdrdrpgqc25qg"]
+[gd_scene load_steps=10 format=3 uid="uid://bdrdrpgqc25qg"]
 
+[ext_resource type="Script" path="res://scripts/enemy/mrbeast_ship.gd" id="1_kjtjv"]
 [ext_resource type="PackedScene" uid="uid://0ncg7uw24q8j" path="res://scenes/enemy/ship.tscn" id="1_u18oj"]
 [ext_resource type="Texture2D" uid="uid://bfhwnhiyweprk" path="res://art/enemy/beast_ship.png" id="2_4fwby"]
 
@@ -47,6 +48,7 @@ animations = [{
 }]
 
 [node name="mrbeast_ship" type="Node2D"]
+script = ExtResource("1_kjtjv")
 
 [node name="ship_component" parent="." instance=ExtResource("1_u18oj")]
 
