@@ -6,6 +6,8 @@ var isMoving : bool = false
 var isBusy : bool = false
 var nextX : float
 var direction : int = 0
+
+var drop
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	self.get_parent().global_position.x = 0
@@ -17,10 +19,11 @@ func _process(delta: float) -> void:
 	#print(get_parent().global_position.x, ":",get_parent().global_position.y)
 	# IF we aren't moving and we aren't dropping items, then we should find a new spot to go
 	if not isMoving and not isBusy:
-		#nextX = randi() % 1100
-		nextX = 550.0	
+		nextX = randi() % 1400 + 400
+		#nextX = 550.0	
 		isMoving = true
 		direction = 1 if get_parent().global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
+		get_parent().get_node("AnimatedSprite2D").flip_h = true if direction == 1 else false
 		return
 	# We have a spot to go to but we aren't there yet
 	if isMoving and not isBusy:
@@ -32,16 +35,16 @@ func _process(delta: float) -> void:
 		return
 	# We have arrived at our spot but we haven't dropped an item yet
 	if not isMoving and isBusy:
-		var drop = get_spawnable_drop()
-		self.add_child(drop)
+		get_spawnable_drop()
+		self.get_parent().add_child(drop)
 		isMoving = true
 		return
 	if isMoving and isBusy:
-		pass
+		return
 	
 # Gets what type of drop we need to drop from the parent then we can pass it to this component
 func get_spawnable_drop():
-	get_parent().spawnable_drop.instantiate()
+	drop = get_parent().spawnable_drop.instantiate()
 	
 
 func check_in_range(a : float, b : float , range : int ) -> bool:

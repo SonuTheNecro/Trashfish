@@ -57,14 +57,14 @@ script = ExtResource("1_q8s6r")
 
 [node name="drop_component" parent="." instance=ExtResource("1_rauiw")]
 timer_length = 5
-fall_speed = 400
-rotation_speed = 5
+fall_speed = 50
+rotation_speed = 0.25
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_kihmo")
-animation = &"explosion"
+animation = &"idle"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
