@@ -1,9 +1,9 @@
 extends Node2D
 const beast_ship = preload("res://scenes/enemy/mrbeast_ship.tscn")
-
+const chandler_ship = preload("res://scenes/enemy/chandler_ship.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var a = beast_ship.instantiate()
+	var a = chandler_ship.instantiate()
 	a.set_global_scale(Vector2(4,4))
 	self.add_child(a)
 	

@@ -64,7 +64,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_7x4u7")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"default",
 "speed": 2.0
 }]
 
@@ -79,4 +79,3 @@ speed = 100
 texture_filter = 1
 position = Vector2(-1, -35)
 sprite_frames = SubResource("SpriteFrames_qryl4")
-animation = &"idle"
