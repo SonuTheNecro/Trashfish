@@ -1,5 +1,5 @@
 extends Node2D
-const spawnable_drop = preload("res://scenes/enemy/dynamite_drop.tscn")
+const spawnable_drop = preload("res://scenes/enemy/trash_drop.tscn")
 
 
 func _ready() -> void:

@@ -1,5 +1,6 @@
 extends Node2D
 @export var timer_length : int
+@export var delete_timer_length : int
 @export var fall_speed : int
 @export var rotation_speed : float
 var isActive : bool = true
@@ -15,7 +16,7 @@ func _ready() -> void:
 	active_timer.start()
 	
 	delete_timer = Timer.new()
-	delete_timer .wait_time = 3
+	delete_timer .wait_time = delete_timer_length
 	delete_timer .one_shot = true
 	self.add_child(delete_timer)
 	delete_timer .timeout.connect(_on_delete_timer_timeout)
@@ -35,7 +36,6 @@ func _process(delta: float) -> void:
 func _on_active_timer_timeout() -> void:
 	delete_timer.start()
 	isActive = false
-	self.get_parent().rotation_degrees = 0
 	get_parent().timer_timeout_event()
 
 func _on_delete_timer_timeout() -> void:

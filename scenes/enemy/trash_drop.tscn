@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cavkox226ugj2"]
+
+[ext_resource type="PackedScene" uid="uid://byt03rernj7cq" path="res://scenes/enemy/drop.tscn" id="1_iv03g"]
+[ext_resource type="Script" path="res://scripts/enemy/trash_drop.gd" id="1_lhp6l"]
+[ext_resource type="Texture2D" uid="uid://cw2gifd8toa4n" path="res://art/enemy/trash.png" id="2_ib0ly"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eajab"]
+radius = 27.0
+
+[node name="trash_drop" type="Node2D"]
+script = ExtResource("1_lhp6l")
+
+[node name="drop_component" parent="." instance=ExtResource("1_iv03g")]
+timer_length = 10
+delete_timer_length = 1
+fall_speed = 50
+rotation_speed = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(5, -32)
+texture = ExtResource("2_ib0ly")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, -25)
+shape = SubResource("CircleShape2D_eajab")
