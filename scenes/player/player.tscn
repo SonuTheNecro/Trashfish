@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ia6ngi8g5tqx"]
+[gd_scene load_steps=7 format=3 uid="uid://ia6ngi8g5tqx"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_edec7"]
 [ext_resource type="Texture2D" uid="uid://phe1ormfklim" path="res://art/player/player.png" id="2_et8aj"]
@@ -22,6 +22,10 @@ animations = [{
 radius = 32.0
 height = 140.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jjfob"]
+radius = 27.0
+height = 106.0
+
 [node name="player" type="CharacterBody2D" groups=["player"]]
 texture_filter = 1
 script = ExtResource("1_edec7")
@@ -37,4 +41,16 @@ shape = SubResource("CapsuleShape2D_1cqym")
 
 [node name="Health_Timer" type="Timer" parent="."]
 
+[node name="attack_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_hitbox"]
+position = Vector2(67, -32)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jjfob")
+disabled = true
+debug_color = Color(0.988541, 0, 0.300824, 0.42)
+
+[node name="attack_timer" type="Timer" parent="attack_hitbox"]
+
 [connection signal="timeout" from="Health_Timer" to="." method="decrease_health"]
+[connection signal="timeout" from="attack_hitbox/attack_timer" to="." method="_on_attack_timer_timeout"]

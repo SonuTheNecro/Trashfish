@@ -10,6 +10,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	if Input.is_action_just_pressed("attack"):
+		self.attack()
+	
 	if self.health == 0:
 		player_death()
 		return
@@ -41,3 +44,13 @@ func increase_health():
 		health = health
 func player_death():
 	print("ded")
+	
+func attack():
+	get_node("attack_hitbox/CollisionShape2D").set_deferred("disabled", false)
+	#$AnimatedSprite2D.play("attack")
+	
+
+
+
+func _on_attack_timer_timeout() -> void:
+	get_node("attack_hitbox/CollisionShape2D").set_deferred("disabled", true)
