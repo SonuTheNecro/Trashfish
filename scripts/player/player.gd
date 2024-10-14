@@ -5,6 +5,7 @@ const acceleration : int = 20
 
 
 var isAttacking : bool = false
+var isDead : bool = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -14,6 +15,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	if isDead:
+		return
+	
+	
 	if Input.is_action_just_pressed("attack") and not isAttacking:
 		self.attack()
 	
@@ -31,6 +36,8 @@ func handle_player_input(delta):
 func handle_player_animation():
 	if abs(velocity.x) > 0.001:
 		flip(velocity.x < 0)
+	if isDead:
+		$AnimatedSprite2D.play("death")
 # Flip the animations and hitboxes
 func flip(value: bool):
 	if value != $AnimatedSprite2D.flip_h:
@@ -48,7 +55,9 @@ func increase_health():
 	if health > 10:
 		health = health
 func player_death():
-	print("ded")
+	self.isDead = true
+	$AnimatedSprite2D.play("death")
+	
 	
 func attack():
 	#print("just_attacked!")
