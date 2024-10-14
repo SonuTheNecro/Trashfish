@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cghw27vekq81v"]
+
+[ext_resource type="Texture2D" uid="uid://cd54tqmtylkf2" path="res://art/player/trash_can.png" id="1_5c1q1"]
+
+[node name="trash_can" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_5c1q1")

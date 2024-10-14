@@ -18,11 +18,10 @@ rotation_speed = 0.75
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(5, -33)
 texture = ExtResource("2_gnhg6")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-3, -23)
+position = Vector2(-6, 9)
 shape = SubResource("CircleShape2D_xopqp")
