@@ -1,6 +1,7 @@
 extends Node2D
 @export var rotation_speed : int = 0
 @export var timer_start : float = 0
+@export var fall_speed : int = 0
 var timer : Timer
 var delete_timer : Timer
 func _ready() -> void:
@@ -16,6 +17,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	self.rotation_degrees += rotation_speed
+	self.global_position.y += fall_speed * delta
 
 func _on_active_timer_timeout() -> void:
 	self.global_position = get_parent().global_position

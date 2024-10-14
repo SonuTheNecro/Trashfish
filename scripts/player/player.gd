@@ -3,10 +3,11 @@ const speed : int = 200
 const acceleration : int = 20
 @export var health : int = 6
 
-
+const trash_can = preload("res://scenes/player/trash_can.tscn")
 var isAttacking : bool = false
 var isDead : bool = false
 
+var drop
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -57,6 +58,8 @@ func increase_health():
 func player_death():
 	self.isDead = true
 	$AnimatedSprite2D.play("death")
+	drop = trash_can.instantiate()
+	self.add_child(drop)
 	
 	
 func attack():
