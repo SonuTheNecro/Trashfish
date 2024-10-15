@@ -21,8 +21,9 @@ scale = Vector2(2, 2)
 
 [node name="raft_enemy" parent="." instance=ExtResource("4_0tkgk")]
 position = Vector2(1690, 229)
-scale = Vector2(4, 4)
+scale = Vector2(2, 2)
 
 [node name="ship_master" type="Node2D" parent="."]
 position = Vector2(393, 206)
 script = ExtResource("5_4ij4q")
+timer_wait_time = 7.0

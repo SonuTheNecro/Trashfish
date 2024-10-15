@@ -39,6 +39,8 @@ func _process(delta: float) -> void:
 			state = 3
 			return
 		3:
+			if self.counter == 0:
+				get_parent().queue_free()
 			return
 	
 # Gets what type of drop we need to drop from the parent then we can pass it to this component
