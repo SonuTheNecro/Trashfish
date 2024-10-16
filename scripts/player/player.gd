@@ -38,11 +38,19 @@ func handle_player_animation():
 	if abs(velocity.x) > 0.001:
 		flip(velocity.x < 0)
 	if isDead:
-		$AnimatedSprite2D.play("death")
+		$body.play("death")
+	match isAttacking:
+		true:
+			$head.play("attack")
+		false:
+			$head.play("idle")
+	$body.play("idle")
+	
 # Flip the animations and hitboxes
 func flip(value: bool):
-	if value != $AnimatedSprite2D.flip_h:
-		$AnimatedSprite2D.flip_h = value
+	if value != $body.flip_h:
+		$body.flip_h = value
+		$head.flip_h = value
 		$attack_hitbox/CollisionShape2D.global_position.x *= -1
 
 func set_health(change : int):
@@ -57,7 +65,8 @@ func increase_health():
 		health = health
 func player_death():
 	self.isDead = true
-	$AnimatedSprite2D.play("death")
+	$body.play("death")
+	$head.visible = false
 	drop = trash_can.instantiate()
 	self.add_child(drop)
 	
