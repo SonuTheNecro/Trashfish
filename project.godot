@@ -24,6 +24,8 @@ window/stretch/mode="canvas_items"
 [global_group]
 
 player="player group"
+attack=""
+drop=""
 
 [input]
 

@@ -14,3 +14,10 @@ func timer_timeout_event():
 func _on_explosion_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		body.set_health(0)
+
+# When the player attacks this object
+func attacked():
+	$drop_component.delete_timer.start()
+	$drop_component.isActive = false
+	self.timer_timeout_event()
+	

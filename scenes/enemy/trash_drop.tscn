@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_eajab"]
 radius = 27.0
 
-[node name="trash_drop" type="Node2D"]
+[node name="trash_drop" type="Node2D" groups=["drop"]]
 script = ExtResource("1_lhp6l")
 
 [node name="drop_component" parent="." instance=ExtResource("1_iv03g")]

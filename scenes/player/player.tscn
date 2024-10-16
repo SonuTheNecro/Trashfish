@@ -231,9 +231,9 @@ shape = SubResource("CapsuleShape2D_1cqym")
 
 [node name="Health_Timer" type="Timer" parent="."]
 
-[node name="attack_hitbox" type="Area2D" parent="."]
+[node name="attack_hitbox" type="Area2D" parent="." groups=["attack"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_hitbox" groups=["attack"]]
 position = Vector2(67, -32)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_jjfob")
@@ -243,4 +243,5 @@ debug_color = Color(0.988541, 0, 0.300824, 0.42)
 [node name="attack_timer" type="Timer" parent="attack_hitbox"]
 
 [connection signal="timeout" from="Health_Timer" to="." method="decrease_health"]
+[connection signal="body_entered" from="attack_hitbox" to="." method="_on_attack_hitbox_body_entered"]
 [connection signal="timeout" from="attack_hitbox/attack_timer" to="." method="_on_attack_timer_timeout"]

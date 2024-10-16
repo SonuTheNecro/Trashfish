@@ -29,16 +29,18 @@ func _physics_process(delta):
 	handle_player_input(delta)
 	handle_player_animation()
 	move_and_slide()
+# Handles basic player movement
 func handle_player_input(delta):
 	var direction : Vector2 = Input.get_vector("move_left","move_right","move_up","move_down")
 	self.velocity.x = lerp(velocity.x, speed * direction.x, acceleration * delta)
 	self.velocity.y = lerp(velocity.y, speed * direction.y, acceleration * delta)
-
+# Handles basic player animations using bools/state machine
 func handle_player_animation():
 	if abs(velocity.x) > 0.001:
 		flip(velocity.x < 0)
 	if isDead:
 		$body.play("death")
+		return
 	match isAttacking:
 		true:
 			$head.play("attack")
@@ -51,8 +53,8 @@ func flip(value: bool):
 	if value != $body.flip_h:
 		$body.flip_h = value
 		$head.flip_h = value
-		$attack_hitbox/CollisionShape2D.global_position.x *= -1
-
+		$attack_hitbox/CollisionShape2D.position.x *= -1
+# Variables to mess with player health
 func set_health(change : int):
 	self.health = change
 
@@ -70,7 +72,7 @@ func player_death():
 	drop = trash_can.instantiate()
 	self.add_child(drop)
 	
-	
+# If we attack, then we should turn on attack hitboxes
 func attack():
 	#print("just_attacked!")
 	get_node("attack_hitbox/CollisionShape2D").set_deferred("disabled", false)
@@ -80,7 +82,15 @@ func attack():
 	
 
 
-
+# When the attack timer resets (CD), we should turn off hitboxes
 func _on_attack_timer_timeout() -> void:
 	get_node("attack_hitbox/CollisionShape2D").set_deferred("disabled", true)
 	isAttacking = false
+
+
+func _on_attack_hitbox_body_entered(body: Node2D) -> void:
+	print(body)
+	if body.is_in_group("player"):
+		return
+	if body.is_in_group("drop"):
+		body.get_parent().attacked()

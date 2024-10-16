@@ -52,7 +52,7 @@ radius = 7.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_kef7d"]
 radius = 32.0156
 
-[node name="dynamite_drop" type="Node2D"]
+[node name="dynamite_drop" type="Node2D" groups=["drop"]]
 script = ExtResource("1_q8s6r")
 
 [node name="drop_component" parent="." instance=ExtResource("1_rauiw")]
