@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 	# IF we aren't moving and we aren't dropping items, then we should find a new spot to go
 	match state:
 		0:
-			nextX = randi() % 1300 + 50
+			nextX = randi() % 1300 + 450
 			#nextX = 550.0	
 			state = 1
 			direction = 1 if get_parent().global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right

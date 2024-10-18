@@ -16,7 +16,7 @@ polygon = PackedVector2Array(-111, 2, -109, 1196, -1, 1196, 2068, 1086, 1925, -7
 script = ExtResource("1_4hx4q")
 
 [node name="player" parent="." instance=ExtResource("1_vr02h")]
-position = Vector2(1079, 668)
+position = Vector2(955, 659)
 scale = Vector2(2, 2)
 
 [node name="raft_enemy" parent="." instance=ExtResource("4_0tkgk")]
