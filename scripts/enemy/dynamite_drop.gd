@@ -4,9 +4,10 @@ func _ready() -> void:
 	$AnimatedSprite2D.play("idle")
 
 func timer_timeout_event():
+	self.rotation_degrees = 0
 	get_node("explosion_hitbox/CollisionShape2D").set_deferred("disabled", false)
 	$AnimatedSprite2D.play("explosion")
-	self.get_parent().rotation_degrees = 0
+	
 	
 	#self.queue_free()
 

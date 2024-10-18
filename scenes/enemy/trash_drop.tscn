@@ -20,7 +20,7 @@ rotation_speed = 0.75
 texture_filter = 1
 texture = ExtResource("2_ib0ly")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["drop"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-6, 6)

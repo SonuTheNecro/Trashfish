@@ -89,7 +89,7 @@ func _on_attack_timer_timeout() -> void:
 
 
 func _on_attack_hitbox_body_entered(body: Node2D) -> void:
-	print(body)
+	#print(body)
 	if body.is_in_group("player"):
 		return
 	if body.is_in_group("drop"):
