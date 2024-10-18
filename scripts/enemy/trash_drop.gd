@@ -5,4 +5,4 @@ func timer_timeout_event():
 	#self.queue_free()
 
 func attacked():
-	self.queue_free()
+	$drop_component._on_delete_timer_timeout()
