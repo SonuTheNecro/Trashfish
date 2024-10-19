@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dj4vdaxwdewiu"]
+[gd_scene load_steps=5 format=3 uid="uid://dj4vdaxwdewiu"]
 
 [ext_resource type="Script" path="res://scripts/world/collision_polygon_2d.gd" id="1_4hx4q"]
 [ext_resource type="Script" path="res://scripts/world/world.gd" id="1_gcfhd"]
 [ext_resource type="PackedScene" uid="uid://ia6ngi8g5tqx" path="res://scenes/player/player.tscn" id="1_vr02h"]
-[ext_resource type="PackedScene" uid="uid://tnnxe3dimvi0" path="res://scenes/enemy/raft_enemy.tscn" id="4_0tkgk"]
 [ext_resource type="Script" path="res://scripts/world/ship_master.gd" id="5_4ij4q"]
 
 [node name="world" type="Node2D"]
@@ -17,10 +16,6 @@ script = ExtResource("1_4hx4q")
 
 [node name="player" parent="." instance=ExtResource("1_vr02h")]
 position = Vector2(955, 659)
-scale = Vector2(2, 2)
-
-[node name="raft_enemy" parent="." instance=ExtResource("4_0tkgk")]
-position = Vector2(1690, 229)
 scale = Vector2(2, 2)
 
 [node name="ship_master" type="Node2D" parent="."]

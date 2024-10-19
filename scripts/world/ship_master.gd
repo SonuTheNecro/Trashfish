@@ -1,6 +1,7 @@
 extends Node2D
 const beast_ship = preload("res://scenes/enemy/mrbeast_ship.tscn")
 const chandler_ship = preload("res://scenes/enemy/chandler_ship.tscn")
+const raft_ship = preload("res://scenes/enemy/raft_enemy.tscn")
 @export var timer_wait_time : float
 var timer : Timer
 # Called when the node enters the scene tree for the first time.
@@ -18,13 +19,15 @@ func _ready() -> void:
 
 
 func _on_delete_timer_timeout() -> void:
-	var a : int = randi() % 2
+	var a : int = randi() % 3
 	var b
 	match a:
 		0:
 			b = beast_ship.instantiate()
 		1:
 			b = chandler_ship.instantiate()
+		2:
+			b = raft_ship.instantiate()
 	b.set_global_scale(Vector2(2,2))
 	self.add_child(b)
 	self.timer.start()
