@@ -2,8 +2,8 @@ extends Node2D
 
 func _ready() -> void:
 	$AnimatedSprite2D.play("idle")
-	$drop_component.timer_length = randi() % 5 + 8
-	$drop_component.fall_speed = randi() % 50 + 70
+	$drop_component.timer_length += randi() % 4
+	$drop_component.fall_speed += randi() % 55
 
 func timer_timeout_event():
 	self.rotation_degrees = 0
