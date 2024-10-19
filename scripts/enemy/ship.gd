@@ -5,12 +5,17 @@ extends Node2D
 var state : int = 0
 var nextX : float
 var direction : int = 0
-
+const death_timer = preload("res://scenes/misc/delete_component.tscn")
 var drop
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	self.get_parent().global_position.x = 0
 	self.get_parent().global_position.y = 255
+	var spot_on_screen_to_spawn_at : int = randi() % 2
+	match spot_on_screen_to_spawn_at:
+		0:
+			self.get_parent().global_position.x = 0
+		1:
+			self.get_parent().global_position.x = 1900
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,10 +43,27 @@ func _process(delta: float) -> void:
 			self.get_parent().add_child(drop)
 			state = 3
 			return
+		# We have run out of things to drop, so lets' be set to despawn!
 		3:
 			if self.counter == 0:
-				get_parent().queue_free()
+				self.state = 4
+				nextX = randi() % 2
+				nextX = 0 if nextX == 0 else 1900
+				direction = 1 if get_parent().global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
+				#get_parent().queue_free()
 			return
+		# Move towards our despawn position
+		4:
+			self.get_parent().global_position.x += direction * speed * delta
+			#print(int(self.get_parent().global_position.x),":",nextX)
+			if check_in_range(self.get_parent().global_position.x,nextX, speed * delta):
+				state = 5
+			get_parent().get_node("AnimatedSprite2D").flip_h = true if direction == 1 else false
+			return
+		# We are at our despawn position, so despawn
+		5:
+			self.get_parent().queue_free()
+			
 	
 # Gets what type of drop we need to drop from the parent then we can pass it to this component
 func get_spawnable_drop():

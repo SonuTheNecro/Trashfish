@@ -41,6 +41,8 @@ func _on_active_timer_timeout() -> void:
 func _on_delete_timer_timeout() -> void:
 	#self.get_node("active_timer").queue_free()
 	#self.get_node("delete_timer").queue_free()
+	if get_parent().get_parent() == null:
+		self.get_parent().queue_free()
 	self.get_parent().get_parent().get_node("ship_component").counter += -1
 	self.get_parent().get_parent().get_node("ship_component").state = 0
 	self.get_parent().queue_free()
