@@ -2,9 +2,9 @@ extends Node2D
 const speed : int = 200
 var direction : Vector2
 func _ready() -> void:
-	self.set_rotation(get_parent().get_node("raft_enemy").get_node("gun").get_rotation())
-	self.global_position = get_parent().get_node("raft_enemy").get_node("gun").get_global_position()
-	get_parent().get_node("raft_enemy").get_node("shoot_timer").start(10)
+	self.set_rotation(get_parent().get_node("gun").get_rotation())
+	self.global_position = get_parent().get_node("gun").get_global_position()
+	get_parent().get_node("shoot_timer").start(10)
 	direction = Vector2(cos(self.get_rotation()), sin(self.get_rotation())) * speed
 
 func _process(delta : float) -> void:

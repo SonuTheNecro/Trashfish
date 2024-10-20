@@ -68,7 +68,10 @@ func _on_shoot_timer_timeout() -> void:
 	$gun.play("fire")
 	bullets_left -= 1
 	var bullet = play_slot_scene.instantiate()
-	get_parent().add_child(bullet)
+	#bullet.set_rotation($gun.get_rotation())
+	#bullet.global_position = $gun.global_position
+	#$shoot_timer.start(10)
+	self.add_child(bullet)
 	
 # Checks if value a/b are in range of each other
 func check_in_range(a : float, b : float , range : int ) -> bool:

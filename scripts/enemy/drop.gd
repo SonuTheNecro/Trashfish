@@ -6,8 +6,10 @@ extends Node2D
 var isActive : bool = true
 var active_timer : Timer
 var delete_timer: Timer
+var xDirection : float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	xDirection = cos(randi() % 3)
 	active_timer = Timer.new()
 	active_timer.wait_time = timer_length
 	active_timer.one_shot = true
@@ -28,6 +30,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not isActive:
 		return
+	self.get_parent().global_position.x += xDirection *(fall_speed / 2) * delta * -1
 	self.get_parent().global_position.y += fall_speed * delta
 	self.get_parent().rotation_degrees += rotation_speed
 	
