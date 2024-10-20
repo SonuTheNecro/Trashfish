@@ -62,6 +62,7 @@ func _process(delta: float) -> void:
 			return
 		# We are at our despawn position, so despawn
 		5:
+			self.get_parent().get_parent().entities_spawned -= 1
 			self.get_parent().queue_free()
 			
 	

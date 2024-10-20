@@ -60,6 +60,7 @@ func _process(delta: float) -> void:
 			return
 		# We are at our despawn position, so despawn
 		5:
+			self.get_parent().entities_spawned -= 1
 			self.queue_free()
 
 # After timer ends, have the gun fire a bullet towards the player and restart the timer

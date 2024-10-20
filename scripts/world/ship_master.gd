@@ -3,6 +3,9 @@ const beast_ship = preload("res://scenes/enemy/mrbeast_ship.tscn")
 const chandler_ship = preload("res://scenes/enemy/chandler_ship.tscn")
 const raft_ship = preload("res://scenes/enemy/raft_enemy.tscn")
 @export var timer_wait_time : float
+@export var max_entities : int = 30
+var entities_spawned : int
+
 var timer : Timer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,6 +22,9 @@ func _ready() -> void:
 
 
 func _on_delete_timer_timeout() -> void:
+	if entities_spawned >= max_entities:
+		self.timer.start()
+		return
 	var a : int = randi() % 3
 	var b
 	match a:
@@ -31,3 +37,4 @@ func _on_delete_timer_timeout() -> void:
 	b.set_global_scale(Vector2(2,2))
 	self.add_child(b)
 	self.timer.start()
+	self.entities_spawned += 1
