@@ -5,5 +5,5 @@ const spawnable_drop = preload("res://scenes/enemy/recycle_drop.tscn")
 
 func _ready() -> void:
 	$AnimatedSprite2D.play("default")
-	$ship_component.counter = randi() % 3 + 5
-	$ship_component.speed = randi() % 75 + 75
+	$ship_component.counter += randi() % 3
+	$ship_component.speed += randi() % 75
