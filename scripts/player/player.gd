@@ -6,7 +6,7 @@ const acceleration : int = 20
 const trash_can = preload("res://scenes/player/trash_can.tscn")
 var isAttacking : bool = false
 var isDead : bool = false
-
+var isHoneyd : bool = false
 var drop
 
 # Called when the node enters the scene tree for the first time.
@@ -84,6 +84,10 @@ func attack():
 func set_debuff(debuff : String) -> void:
 	match debuff:
 		"honey":
+			if isHoneyd:
+				$debuff_master/honey_timer.start()
+				return
+			isHoneyd = true
 			self.speed /= 2
 			$debuff_master/honey_timer.start()
 		"ice":
@@ -107,4 +111,6 @@ func _on_attack_hitbox_body_entered(body: Node2D) -> void:
 
 
 func _on_honey_timer_timeout() -> void:
-	self.speed *= 2
+	print(speed)
+	self.speed = speed * 2
+	isHoneyd = false

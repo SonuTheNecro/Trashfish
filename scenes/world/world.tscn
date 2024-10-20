@@ -17,6 +17,7 @@ script = ExtResource("1_4hx4q")
 [node name="player" parent="." instance=ExtResource("1_vr02h")]
 position = Vector2(955, 659)
 scale = Vector2(2, 2)
+health = 6
 
 [node name="ship_master" type="Node2D" parent="."]
 position = Vector2(393, 206)

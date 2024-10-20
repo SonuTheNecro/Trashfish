@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://b5ba0xhj2skmx" path="res://art/enemy/honey_drop.png" id="2_1k6aw"]
 [ext_resource type="Texture2D" uid="uid://chv64luwhe0vo" path="res://art/enemy/honey_explosion.png" id="2_kdq6p"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_88cdf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_q78dv"]
 atlas = ExtResource("2_kdq6p")
-region = Rect2(0, 0, 144, 69)
+region = Rect2(0, 0, 144, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yrga8"]
 atlas = ExtResource("2_1k6aw")
@@ -17,7 +17,7 @@ region = Rect2(0, 0, 144, 69)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_88cdf")
+"texture": SubResource("AtlasTexture_q78dv")
 }],
 "loop": true,
 "name": &"explosion",
@@ -51,7 +51,7 @@ fall_speed = 10
 texture_filter = 1
 position = Vector2(8, -29)
 sprite_frames = SubResource("SpriteFrames_2q26l")
-animation = &"idle"
+animation = &"explosion"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["drop"]]
 
