@@ -1,5 +1,5 @@
 extends CharacterBody2D
-const speed : int = 200
+var speed : int = 200
 const acceleration : int = 20
 @export var health : int = 6
 
@@ -80,7 +80,15 @@ func attack():
 	#$AnimatedSprite2D.play("attack")
 	$attack_hitbox/attack_timer.start()
 	
-
+# Sets the player's debuff 
+func set_debuff(debuff : String) -> void:
+	match debuff:
+		"honey":
+			self.speed /= 2
+			$debuff_master/honey_timer.start()
+		"ice":
+			self.speed /= 4
+			$debuff_master/ice_timer.start()
 
 # When the attack timer resets (CD), we should turn off hitboxes
 func _on_attack_timer_timeout() -> void:
@@ -95,3 +103,8 @@ func _on_attack_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("drop"):
 		self.increase_health()
 		body.get_parent().attacked()
+		
+
+
+func _on_honey_timer_timeout() -> void:
+	self.speed *= 2
