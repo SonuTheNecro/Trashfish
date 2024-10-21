@@ -27,16 +27,16 @@ func _on_delete_timer_timeout() -> void:
 		self.timer.start()
 		return
 	var a : int = randi() % 4
-	var b = raft_ship.instantiate()
-	#match a:
-		#0:
-		#	b = beast_ship.instantiate()
-		#1:
-		#	b = chandler_ship.instantiate()
-		#2:
-		#	b = raft_ship.instantiate()
-	#	3:
-		#	b = kris_ship.instantiate()
+	var b
+	match a:
+		0:
+			b = beast_ship.instantiate()
+		1:
+			b = chandler_ship.instantiate()
+		2:
+			b = raft_ship.instantiate()
+		3:
+			b = kris_ship.instantiate()
 	b.set_global_scale(Vector2(2,2))
 	self.add_child(b)
 	self.timer.start()

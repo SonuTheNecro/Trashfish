@@ -11,7 +11,8 @@ func _process(delta : float) -> void:
 	self.global_position +=  direction * delta
 	if abs(global_position.x) > 3000 or abs(global_position.y) > 3000:
 		self.queue_free()
-	
+		#print(previous_location, ":", get_parent().get_node("gun").global_position )
+		self.queue_free()
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
