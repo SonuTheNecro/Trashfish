@@ -41,6 +41,7 @@ func handle_player_animation():
 	if isDead:
 		$body.play("death")
 		return
+	$debuff_master/honey.visible = isHoneyd
 	match isAttacking:
 		true:
 			$head.play("attack")
@@ -54,6 +55,7 @@ func flip(value: bool):
 		$body.flip_h = value
 		$head.flip_h = value
 		$attack_hitbox/CollisionShape2D.position.x *= -1
+		$debuff_master/honey.flip_h = value
 # Variables to mess with player health
 func set_health(change : int):
 	self.health = change
@@ -111,6 +113,5 @@ func _on_attack_hitbox_body_entered(body: Node2D) -> void:
 
 
 func _on_honey_timer_timeout() -> void:
-	print(speed)
 	self.speed = speed * 2
 	isHoneyd = false
