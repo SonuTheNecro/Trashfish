@@ -1,0 +1,87 @@
+[gd_scene load_steps=13 format=3 uid="uid://bt0n0l7e3i1s"]
+
+[ext_resource type="PackedScene" uid="uid://byt03rernj7cq" path="res://scenes/enemy/drop.tscn" id="1_25fhf"]
+[ext_resource type="Script" path="res://scripts/enemy/ice_drop.gd" id="1_ltntn"]
+[ext_resource type="Texture2D" uid="uid://7cj8wkwn8sah" path="res://art/enemy/ice_drop.png" id="2_3g1yb"]
+[ext_resource type="Texture2D" uid="uid://jo2guthsahun" path="res://art/enemy/ice_explosion.png" id="3_q8222"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5s4an"]
+atlas = ExtResource("3_q8222")
+region = Rect2(0, 0, 144, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iadbf"]
+atlas = ExtResource("2_3g1yb")
+region = Rect2(0, 0, 144, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ankjy"]
+atlas = ExtResource("2_3g1yb")
+region = Rect2(144, 0, 144, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fq2xm"]
+atlas = ExtResource("2_3g1yb")
+region = Rect2(288, 0, 144, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7al2e"]
+atlas = ExtResource("2_3g1yb")
+region = Rect2(432, 0, 144, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r58q0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5s4an")
+}],
+"loop": true,
+"name": &"explosion",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iadbf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ankjy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fq2xm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7al2e")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xyyee"]
+size = Vector2(32, 33)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a4iw7"]
+radius = 41.0
+height = 128.0
+
+[node name="ice_drop" type="Node2D"]
+script = ExtResource("1_ltntn")
+
+[node name="drop_component" parent="." instance=ExtResource("1_25fhf")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(9, -31)
+sprite_frames = SubResource("SpriteFrames_r58q0")
+animation = &"idle"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["drop"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1, -18.5)
+shape = SubResource("RectangleShape2D_xyyee")
+
+[node name="explosion_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="explosion_hitbox"]
+position = Vector2(2, -19)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_a4iw7")
+disabled = true
+debug_color = Color(0.922421, 0.201833, 0.485053, 0.42)
