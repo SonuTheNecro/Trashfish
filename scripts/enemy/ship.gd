@@ -68,6 +68,14 @@ func _process(delta: float) -> void:
 	
 # Gets what type of drop we need to drop from the parent then we can pass it to this component
 func get_spawnable_drop():
+	# For chandler/kris ships which need multiple drops
+	if self.id == 2:
+		match randi() % 2:
+			0:
+				drop = get_parent().spawnable_drop1.instantiate()
+			1:
+				drop = get_parent().spawnable_drop2.instantiate()
+		return
 	drop = get_parent().spawnable_drop.instantiate()
 	
 

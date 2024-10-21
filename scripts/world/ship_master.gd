@@ -18,7 +18,7 @@ func _ready() -> void:
 	#var a = chandler_ship.instantiate()
 	#a.set_global_scale(Vector2(4,4))
 	#self.add_child(a)
-	self.timer.start()
+	spawn_new_enemy()
 	
 
 
@@ -26,6 +26,10 @@ func _on_delete_timer_timeout() -> void:
 	if entities_spawned >= max_entities:
 		self.timer.start()
 		return
+	spawn_new_enemy()
+
+	
+func spawn_new_enemy() -> void:
 	var a : int = randi() % 4
 	var b
 	match a:
