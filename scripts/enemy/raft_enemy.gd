@@ -5,7 +5,7 @@ extends Node2D
 @onready var state = 0
 var nextX : float
 var direction : int
-var bullets_left : int = 5
+var bullets_left : int = 2
 @export var speed : int = 100
 const play_slot_scene = preload("res://scenes/enemy/bullet.tscn")
 
@@ -13,12 +13,14 @@ const play_slot_scene = preload("res://scenes/enemy/bullet.tscn")
 func _ready() -> void:
 	$raft.play("idle")
 	var spot_on_screen_to_spawn_at : int = randi() % 2
+	bullets_left += randi() % 3
+	speed += randi() % 50
 	match spot_on_screen_to_spawn_at:
 		0:
 			self.global_position.x = 0
 		1:
 			self.global_position.x = 1900
-
+	$shoot_timer.wait_time += randi() % 10
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -40,17 +42,20 @@ func _process(delta: float) -> void:
 			return
 		# We have arrived at our spot fire!
 		2:
-			if bullets_left <= 0:
+			#print($shoot_timer.is_stopped())
+			if bullets_left == 0:
 				state = 3
-			if shoot_timer.time_left >= 0.01:
+				$shoot_timer.stop()
 				return
-			$shoot_timer.start()
+			if $shoot_timer.is_stopped():
+				$shoot_timer.start()
 			return
 		3:
-			self.state = 4
 			nextX = randi() % 2
 			nextX = 0 if nextX == 0 else 1900
 			direction = 1 if self.global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
+			self.state = 4
+			return
 		4:
 			self.global_position.x += direction * speed * delta
 			#print(int(self.get_parent().global_position.x),":",nextX)
@@ -68,9 +73,6 @@ func _on_shoot_timer_timeout() -> void:
 	$gun.play("fire")
 	bullets_left -= 1
 	var bullet = play_slot_scene.instantiate()
-	#bullet.set_rotation($gun.get_rotation())
-	#bullet.global_position = $gun.global_position
-	#$shoot_timer.start(10)
 	self.add_child(bullet)
 	
 # Checks if value a/b are in range of each other
