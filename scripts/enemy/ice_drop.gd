@@ -20,4 +20,3 @@ func attacked():
 	$drop_component.delete_timer.start()
 	$drop_component.isActive = false
 	self.timer_timeout_event()
-	

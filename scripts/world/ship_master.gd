@@ -41,6 +41,7 @@ func spawn_new_enemy() -> void:
 			b = raft_ship.instantiate()
 		3:
 			b = kris_ship.instantiate()
+	b = kris_ship.instantiate()
 	b.set_global_scale(Vector2(2,2))
 	self.add_child(b)
 	self.timer.start()

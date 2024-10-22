@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://ia6ngi8g5tqx"]
+[gd_scene load_steps=46 format=3 uid="uid://ia6ngi8g5tqx"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_edec7"]
 [ext_resource type="Texture2D" uid="uid://beolwmdrk1w4w" path="res://art/player/dead_player.png" id="2_y0gff"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ccy56dt2gdsyf" path="res://art/player/player_attack.png" id="4_17ldg"]
 [ext_resource type="Texture2D" uid="uid://bhx4urlhmshsf" path="res://art/player/player_head_idle.png" id="4_e3boi"]
 [ext_resource type="Texture2D" uid="uid://d1rgjm4vsluua" path="res://art/player/honey_player.png" id="6_pyiet"]
+[ext_resource type="Texture2D" uid="uid://dfskd1e87ktt4" path="res://art/player/ice_player.png" id="7_qtndv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uclss"]
 atlas = ExtResource("2_y0gff")
@@ -245,6 +246,42 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tnmb"]
+atlas = ExtResource("7_qtndv")
+region = Rect2(0, 0, 144, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rmed"]
+atlas = ExtResource("7_qtndv")
+region = Rect2(144, 0, 144, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utvw4"]
+atlas = ExtResource("7_qtndv")
+region = Rect2(288, 0, 144, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2y3ee"]
+atlas = ExtResource("7_qtndv")
+region = Rect2(432, 0, 144, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p7d51"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tnmb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rmed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utvw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2y3ee")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="player" type="CharacterBody2D" groups=["player"]]
 texture_filter = 1
 script = ExtResource("1_edec7")
@@ -292,9 +329,18 @@ sprite_frames = SubResource("SpriteFrames_7b6dx")
 wait_time = 4.0
 one_shot = true
 
+[node name="ice" type="AnimatedSprite2D" parent="debuff_master"]
+visible = false
+texture_filter = 1
+position = Vector2(8, -30)
+sprite_frames = SubResource("SpriteFrames_p7d51")
+
 [node name="ice_timer" type="Timer" parent="debuff_master"]
+wait_time = 2.0
+one_shot = true
 
 [connection signal="timeout" from="Health_Timer" to="." method="decrease_health"]
 [connection signal="body_entered" from="attack_hitbox" to="." method="_on_attack_hitbox_body_entered"]
 [connection signal="timeout" from="attack_hitbox/attack_timer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="debuff_master/honey_timer" to="." method="_on_honey_timer_timeout"]
+[connection signal="timeout" from="debuff_master/ice_timer" to="." method="_on_ice_timer_timeout"]

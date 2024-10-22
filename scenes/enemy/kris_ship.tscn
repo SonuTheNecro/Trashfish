@@ -46,6 +46,7 @@ script = ExtResource("1_3ymmn")
 [node name="ship_component" parent="." instance=ExtResource("1_tjy4t")]
 counter = 2
 speed = 600
+id = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

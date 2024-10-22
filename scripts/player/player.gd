@@ -7,6 +7,7 @@ const trash_can = preload("res://scenes/player/trash_can.tscn")
 var isAttacking : bool = false
 var isDead : bool = false
 var isHoneyd : bool = false
+var isIced : bool = false
 var drop
 
 # Called when the node enters the scene tree for the first time.
@@ -42,6 +43,7 @@ func handle_player_animation():
 		$body.play("death")
 		return
 	$debuff_master/honey.visible = isHoneyd
+	$debuff_master/ice.visible = isIced
 	match isAttacking:
 		true:
 			$head.play("attack")
@@ -56,6 +58,7 @@ func flip(value: bool):
 		$head.flip_h = value
 		$attack_hitbox/CollisionShape2D.position.x *= -1
 		$debuff_master/honey.flip_h = value
+		$debuff_master/ice.flip_h = value
 # Variables to mess with player health
 func set_health(change : int):
 	self.health = change
@@ -93,6 +96,10 @@ func set_debuff(debuff : String) -> void:
 			self.speed /= 2
 			$debuff_master/honey_timer.start()
 		"ice":
+			if isIced:
+				$debuff_master/ice_timer.start()
+				return
+			isIced = true
 			self.speed /= 4
 			$debuff_master/ice_timer.start()
 
@@ -115,3 +122,8 @@ func _on_attack_hitbox_body_entered(body: Node2D) -> void:
 func _on_honey_timer_timeout() -> void:
 	self.speed = speed * 2
 	isHoneyd = false
+
+
+func _on_ice_timer_timeout() -> void:
+	self.speed = speed * 4
+	isIced = false
