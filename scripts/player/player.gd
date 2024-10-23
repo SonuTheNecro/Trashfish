@@ -12,15 +12,18 @@ var drop
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$debuff_master/honey.play("default")
+	$debuff_master/ice.play("default")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	if (Input.is_action_just_pressed("restart")):
+		get_tree().change_scene_to_file("res://scenes/world/world.tscn")
+	if (Input.is_action_just_pressed("revive")):
+		self.set_health(10)
 	if isDead:
 		return
-	
-	
 	if Input.is_action_just_pressed("attack") and not isAttacking:
 		self.attack()
 	
