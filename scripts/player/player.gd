@@ -110,6 +110,8 @@ func set_debuff(debuff : String) -> void:
 
 # Flashes the player body when damaged
 func flash_body():
+	if health <= 0:
+		return
 	$body.material.set_shader_parameter("flash_modifer", 0.7)
 	$head.material.set_shader_parameter("flash_modifer", 0.7)
 	$body/flash_timer.start()
