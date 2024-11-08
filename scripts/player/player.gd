@@ -67,7 +67,9 @@ func set_health(change : int):
 	self.health = change
 
 func decrease_health() :
+	print(health)
 	self.health -= 1;
+	self.flash_body();
 
 func increase_health():
 	self.health += 1;
@@ -106,6 +108,13 @@ func set_debuff(debuff : String) -> void:
 			self.speed /= 4
 			$debuff_master/ice_timer.start()
 
+# Flashes the player body when damaged
+func flash_body():
+	$body.material.set_shader_parameter("flash_modifer", 0.7)
+	$head.material.set_shader_parameter("flash_modifer", 0.7)
+	$body/flash_timer.start()
+
+
 # When the attack timer resets (CD), we should turn off hitboxes
 func _on_attack_timer_timeout() -> void:
 	get_node("attack_hitbox/CollisionShape2D").set_deferred("disabled", true)
@@ -130,3 +139,8 @@ func _on_honey_timer_timeout() -> void:
 func _on_ice_timer_timeout() -> void:
 	self.speed = speed * 4
 	isIced = false
+
+
+func _on_flash_timer_timeout() -> void:
+	$body.material.set_shader_parameter("flash_modifer", 0)
+	$head.material.set_shader_parameter("flash_modifer", 0)
