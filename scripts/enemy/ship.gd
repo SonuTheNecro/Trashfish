@@ -39,13 +39,20 @@ func _process(delta: float) -> void:
 			return
 		# We have arrived at our spot but we haven't dropped an item yet
 		2:
+			# Karl Jacobs has an additional animation
+			if self.id == 4:
+				get_parent().get_child(1).play("swim")
 			get_spawnable_drop()
 			self.get_parent().add_child(drop)
 			state = 3
 			return
 		# We have run out of things to drop, so lets' be set to despawn!
 		3:
+			
 			if self.counter == 0:
+				# Reset Karl Jacobs Animation
+				if self.id == 4:
+					self.get_parent().get_node("AnimatedSprite2D").play("default")
 				self.state = 4
 				nextX = randi() % 2
 				nextX = 0 if nextX == 0 else 1900
@@ -76,6 +83,21 @@ func get_spawnable_drop():
 			1:
 				drop = get_parent().spawnable_drop2.instantiate()
 		return
+	# Karl jacobs needs all the drops...
+	if self.id == 4:
+		match randi() % 5:
+			0:
+				drop = get_parent().spawnable_drop1.instantiate()
+			1:
+				drop = get_parent().spawnable_drop2.instantiate()
+			2:
+				drop = get_parent().spawnable_drop3.instantiate()
+			3:
+				drop = get_parent().spawnable_drop4.instantiate()
+			4:
+				drop = get_parent().spawnable_drop5.instantiate()
+		return
+	
 	drop = get_parent().spawnable_drop.instantiate()
 	
 
