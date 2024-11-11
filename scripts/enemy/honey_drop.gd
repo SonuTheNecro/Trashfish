@@ -19,5 +19,7 @@ func _on_explosion_hitbox_body_entered(body: Node2D) -> void:
 func attacked():
 	$drop_component.delete_timer.start()
 	$drop_component.isActive = false
+	$StaticBody2D.set_deferred("disable_mode",true)
+	$StaticBody2D/CollisionShape2D.set_deferred("disabled",true)
 	self.timer_timeout_event()
 	

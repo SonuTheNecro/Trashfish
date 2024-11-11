@@ -31,13 +31,18 @@ func _on_delete_timer_timeout() -> void:
 
 	
 func spawn_new_enemy() -> void:
-	var a : int = randi() % 5
+	var c = get_parent().score / 10
+	if c > 5:
+		c = 5
+	if c <= 0:
+		c = 1
+	var a : int = randi() % c
 	var b
 	match a:
 		0:
-			b = beast_ship.instantiate()
-		1:
 			b = chandler_ship.instantiate()
+		1:
+			b = beast_ship.instantiate()
 		2:
 			b = raft_ship.instantiate()
 		3:

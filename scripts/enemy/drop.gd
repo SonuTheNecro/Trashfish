@@ -49,6 +49,8 @@ func _on_delete_timer_timeout() -> void:
 	# Karl Jacobs Check
 	if self.get_parent().get_parent().get_node("ship_component").id == 4:
 		self.get_parent().get_parent().get_node("AnimatedSprite2D").play("default")
+	
+	self.get_parent().get_parent().get_parent().get_parent().score += 1
 	self.get_parent().get_parent().get_node("ship_component").counter += -1
 	self.get_parent().get_parent().get_node("ship_component").state = 0
 	self.get_parent().queue_free()
