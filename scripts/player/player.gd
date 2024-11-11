@@ -66,14 +66,14 @@ func set_health(change : int):
 	self.health = change
 
 func decrease_health() :
-	print(health)
+	#print(health)
 	self.health -= 1;
 	self.flash_body();
 
 func increase_health():
 	self.health += 1;
 	if health > 10:
-		health = health
+		health = 10
 func player_death():
 	self.isDead = true
 	$body.play("death")
