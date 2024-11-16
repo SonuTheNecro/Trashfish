@@ -2,9 +2,11 @@ extends Node2D
 @export var counter : int = 3
 @export var speed : int = 200
 @export var id : int
+@export var wait_time : float = 0.25
 var state : int = 0
 var nextX : float
 var direction : int = 0
+var hasWaited : bool = false
 const death_timer = preload("res://scenes/misc/delete_component.tscn")
 var drop
 # Called when the node enters the scene tree for the first time.
@@ -36,12 +38,17 @@ func _process(delta: float) -> void:
 			#print(int(self.get_parent().global_position.x),":",nextX)
 			if check_in_range(self.get_parent().global_position.x,nextX, speed * delta):
 				state = 2
+				$wait_timer.start()
 			return
 		# We have arrived at our spot but we haven't dropped an item yet
 		2:
 			# Karl Jacobs has an additional animation
 			if self.id == 4:
 				get_parent().get_child(1).play("swim")
+			# Wait for some time if we'd like
+			if $wait_timer.time_left > 0.01 and not $wait_timer.is_stopped():
+				return
+			
 			get_spawnable_drop()
 			self.get_parent().add_child(drop)
 			state = 3
@@ -110,3 +117,7 @@ func check_in_range(a : float, b : float , range : int ) -> bool:
 			return true
 	return false
 		
+
+
+func _on_wait_timer_timeout() -> void:
+	hasWaited = true

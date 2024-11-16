@@ -75,6 +75,7 @@ script = ExtResource("1_o53rk")
 counter = 6
 speed = 120
 id = 2
+wait_time = 0.432
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

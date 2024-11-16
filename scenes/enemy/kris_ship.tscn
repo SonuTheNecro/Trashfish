@@ -47,6 +47,7 @@ script = ExtResource("1_3ymmn")
 counter = 1
 speed = 400
 id = 3
+wait_time = 0.125
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

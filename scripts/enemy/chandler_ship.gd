@@ -7,4 +7,4 @@ func _ready() -> void:
 	$AnimatedSprite2D.play("default")
 	$ship_component.counter += randi() % 3
 	$ship_component.speed += randi() % 55
-	
+	$ship_component/wait_timer.wait_time = randi() % 2 + $ship_component.wait_time
