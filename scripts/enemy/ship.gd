@@ -11,7 +11,7 @@ const death_timer = preload("res://scenes/misc/delete_component.tscn")
 var drop
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	self.get_parent().global_position.y = 255
+	self.get_parent().global_position.y = 195 + randi() % 3
 	var spot_on_screen_to_spawn_at : int = randi() % 2
 	match spot_on_screen_to_spawn_at:
 		0:

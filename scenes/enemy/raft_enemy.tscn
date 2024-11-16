@@ -107,14 +107,14 @@ libraries = {
 
 [node name="raft" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -35)
+position = Vector2(0, -38)
 sprite_frames = SubResource("SpriteFrames_vvid7")
 animation = &"idle"
 frame_progress = 0.486281
 
 [node name="gun" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-57, -21)
+position = Vector2(-57, -24)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_43jhp")
 animation = &"idle"
