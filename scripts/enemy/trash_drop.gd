@@ -9,4 +9,5 @@ func timer_timeout_event():
 	#self.queue_free()
 
 func attacked():
+	self.get_parent().get_parent().get_parent().score += 1
 	$drop_component._on_delete_timer_timeout()

@@ -6,8 +6,9 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	#print(score)
-	pass
+	if $player.isDead:
+		return
+	$Panel/score.text = "Score: %d" % score
 
 
 func get_player_position() -> Vector2:

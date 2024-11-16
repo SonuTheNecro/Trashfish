@@ -31,7 +31,7 @@ func _on_delete_timer_timeout() -> void:
 
 	
 func spawn_new_enemy() -> void:
-	var c = get_parent().score / 10
+	var c = get_parent().score / 5
 	if c > 5:
 		c = 5
 	if c <= 0:
