@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dj4vdaxwdewiu"]
+[gd_scene load_steps=7 format=3 uid="uid://dj4vdaxwdewiu"]
 
 [ext_resource type="Script" path="res://scripts/world/collision_polygon_2d.gd" id="1_4hx4q"]
 [ext_resource type="Script" path="res://scripts/world/world.gd" id="1_gcfhd"]
 [ext_resource type="PackedScene" uid="uid://ia6ngi8g5tqx" path="res://scenes/player/player.tscn" id="1_vr02h"]
 [ext_resource type="Texture2D" uid="uid://rjycrnaueu0r" path="res://art/world/background.png" id="5_2afuy"]
 [ext_resource type="Script" path="res://scripts/world/ship_master.gd" id="5_4ij4q"]
+[ext_resource type="Texture2D" uid="uid://cgyve4kk648yh" path="res://art/world/sky.png" id="5_ou8na"]
 
 [node name="world" type="Node2D"]
 script = ExtResource("1_gcfhd")
@@ -27,7 +28,11 @@ max_entities = 40
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
+[node name="sky" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(964, 113)
+texture = ExtResource("5_ou8na")
+
+[node name="background" type="Sprite2D" parent="ParallaxBackground"]
 position = Vector2(961, 540)
 texture = ExtResource("5_2afuy")
 
@@ -36,11 +41,12 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="score" type="Label" parent="Panel"]
-texture_filter = 1
+texture_filter = 5
+texture_repeat = 1
 layout_mode = 0
-offset_left = 1168.0
+offset_left = 1541.0
 offset_top = -12.0
-offset_right = 1345.0
+offset_right = 1629.0
 offset_bottom = 11.0
 scale = Vector2(4.2, 4.2)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
