@@ -51,7 +51,7 @@ fall_speed = 10
 texture_filter = 1
 position = Vector2(8, -29)
 sprite_frames = SubResource("SpriteFrames_2q26l")
-animation = &"explosion"
+animation = &"idle"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["drop"]]
 
