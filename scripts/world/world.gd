@@ -9,6 +9,7 @@ func _process(_delta: float) -> void:
 	if $player.isDead:
 		return
 	$Panel/score.text = "Score: %d" % score
+	$Panel/health.text = "Health: %d" % $player.get_health()
 
 
 func get_player_position() -> Vector2:

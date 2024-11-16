@@ -62,6 +62,11 @@ func flip(value: bool):
 		$attack_hitbox/CollisionShape2D.position.x *= -1
 		$debuff_master/honey.flip_h = value
 		$debuff_master/ice.flip_h = value
+		
+# Getter for health
+func get_health():
+	return self.health;
+
 # Variables to mess with player health
 func set_health(change : int):
 	self.health = change
