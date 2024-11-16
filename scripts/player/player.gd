@@ -21,6 +21,7 @@ func _physics_process(delta):
 		get_tree().change_scene_to_file("res://scenes/world/world.tscn")
 	if (Input.is_action_just_pressed("revive")):
 		self.set_health(10)
+		self.isDead = false
 	if isDead:
 		return
 	if Input.is_action_just_pressed("attack") and not isAttacking:
