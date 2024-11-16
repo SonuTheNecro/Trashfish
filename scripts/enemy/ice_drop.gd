@@ -21,5 +21,5 @@ func attacked():
 	$drop_component.delete_timer.start()
 	$drop_component.isActive = false
 	$StaticBody2D.set_deferred("disable_mode",true)
-	$StaticBody2D/CollisionShape2D.set_deferred("disabled",true)
+	$StaticBody2D/CollisionPolygon2D.set_deferred("disabled",true)
 	self.timer_timeout_event()

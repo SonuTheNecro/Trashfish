@@ -81,6 +81,8 @@ func increase_health():
 	if health > 10:
 		health = 10
 func player_death():
+	self.get_parent().update_hud_when_dead()
+	self.health = 0
 	self.isDead = true
 	$body.play("death")
 	$head.visible = false
