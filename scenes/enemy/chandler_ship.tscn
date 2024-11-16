@@ -73,7 +73,7 @@ script = ExtResource("1_o53rk")
 
 [node name="ship_component" parent="." instance=ExtResource("1_pwmcu")]
 counter = 6
-speed = 100
+speed = 120
 id = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

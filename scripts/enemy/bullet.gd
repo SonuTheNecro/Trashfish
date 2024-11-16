@@ -1,7 +1,8 @@
 extends Node2D
-const speed : int = 200
+var speed : int = 200
 var direction : Vector2
 func _ready() -> void:
+	self.speed += randi() % 55
 	self.set_rotation(get_parent().get_node("gun").get_rotation())
 	self.global_position = get_parent().get_node("gun").get_global_position()
 	get_parent().get_node("shoot_timer").start(10)

@@ -14,7 +14,7 @@ func _ready() -> void:
 	$raft.play("idle")
 	var spot_on_screen_to_spawn_at : int = randi() % 2
 	bullets_left += randi() % 3
-	speed += randi() % 50
+	speed += randi() % 150
 	match spot_on_screen_to_spawn_at:
 		0:
 			self.global_position.x = 0

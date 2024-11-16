@@ -51,6 +51,7 @@ animations = [{
 script = ExtResource("1_kjtjv")
 
 [node name="ship_component" parent="." instance=ExtResource("1_u18oj")]
+counter = 2
 id = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
