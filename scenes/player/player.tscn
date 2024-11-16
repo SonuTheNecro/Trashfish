@@ -312,7 +312,7 @@ one_shot = true
 [node name="head" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_7lv3r")
-position = Vector2(8, -30)
+position = Vector2(7, -30)
 sprite_frames = SubResource("SpriteFrames_kffas")
 animation = &"idle"
 
@@ -335,7 +335,8 @@ disabled = true
 debug_color = Color(0.988541, 0, 0.300824, 0.42)
 
 [node name="attack_timer" type="Timer" parent="attack_hitbox"]
-wait_time = 0.8
+wait_time = 0.45
+one_shot = true
 
 [node name="debuff_master" type="Node2D" parent="."]
 
