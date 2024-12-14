@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://da51siwmltkoo"]
+[gd_scene load_steps=5 format=3 uid="uid://da51siwmltkoo"]
 
 [ext_resource type="Texture2D" uid="uid://dwxg3n1piywg2" path="res://art/world/main_menu.png" id="1_1swq0"]
 [ext_resource type="PackedScene" uid="uid://ia6ngi8g5tqx" path="res://scenes/player/player.tscn" id="2_fxrh8"]
 [ext_resource type="PackedScene" uid="uid://b210yyc8g3mvk" path="res://scenes/world/start_button.tscn" id="3_w6es1"]
+[ext_resource type="PackedScene" uid="uid://cya1bmeausnpo" path="res://scenes/world/controls_button.tscn" id="4_whecn"]
 
 [node name="main_menu" type="Node2D"]
 
@@ -13,10 +14,13 @@ position = Vector2(960, 539)
 texture = ExtResource("1_1swq0")
 
 [node name="player" parent="." instance=ExtResource("2_fxrh8")]
-position = Vector2(271, 651)
+position = Vector2(395, 666)
 scale = Vector2(3, 3)
 health = 10000
 world_id = 0
 
 [node name="start_button" parent="." instance=ExtResource("3_w6es1")]
 position = Vector2(683, 385)
+
+[node name="controls_button" parent="." instance=ExtResource("4_whecn")]
+position = Vector2(683, 514)
