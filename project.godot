@@ -26,6 +26,7 @@ window/stretch/mode="canvas_items"
 player="player group"
 attack=""
 drop=""
+main_menu_block=""
 
 [input]
 

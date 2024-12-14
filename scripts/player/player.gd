@@ -2,6 +2,7 @@ extends CharacterBody2D
 var speed : int = 200
 const acceleration : int = 20
 @export var health : int = 6
+@export var world_id : int = 3
 const trash_can = preload("res://scenes/player/trash_can.tscn")
 var isAttacking : bool = false
 var isDead : bool = false
@@ -73,6 +74,8 @@ func set_health(change : int):
 
 func decrease_health() :
 	#print(health)
+	if self.world_id == 0 or self.world_id == 1:
+		return
 	self.health -= 1;
 	self.flash_body();
 
@@ -137,6 +140,10 @@ func _on_attack_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("drop"):
 		self.increase_health()
 		body.get_parent().attacked()
+		return
+	if body.is_in_group("main_menu_block"):
+		body.get_parent().attacked()
+		return
 		
 
 

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b210yyc8g3mvk"]
+
+[ext_resource type="Script" path="res://scripts/world/start_button.gd" id="1_glm2p"]
+
+[node name="start_button" type="Node2D" groups=["main_menu_block"]]
+script = ExtResource("1_glm2p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
