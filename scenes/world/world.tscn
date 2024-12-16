@@ -41,6 +41,7 @@ offset_bottom = 40.0
 
 [node name="high_score" type="Label" parent="Panel"]
 texture_filter = 5
+layout_mode = 0
 offset_left = 612.0
 offset_top = -18.0
 offset_right = 924.0
