@@ -110,10 +110,10 @@ func get_spawnable_drop():
 
 func check_in_range(a : float, b : float , range : int ) -> bool:
 	if a > b:
-		if a - b < range:
+		if a - b < range + 1:
 			return true
 	if a < b:
-		if b - a < range:
+		if b - a < range + 1:
 			return true
 	return false
 		
