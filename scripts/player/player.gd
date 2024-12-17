@@ -72,6 +72,11 @@ func get_health():
 func set_health(change : int):
 	self.health = change
 
+func minus_health(change: int):
+	self.health -= change
+	if health <= 0:
+		player_death()
+
 func decrease_health() :
 	#print(health)
 	if self.world_id == 0 or self.world_id == 1:

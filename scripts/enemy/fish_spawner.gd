@@ -1,7 +1,9 @@
 extends Node2D
 @export var enemies_left : int = 1
+@export var fish_returned : int = 0
 var state : int = 0
 var fish
+const play_slot_scene = preload("res://scenes/enemy/orca.tscn")
 func _ready():
 	# change these values later
 	self.global_position.x = 50
@@ -17,7 +19,13 @@ func _process(delta):
 			return
 		# Spawn the fish we need to
 		1:
-			pass
+			for i in range(enemies_left, 0, -1):
+				fish = play_slot_scene.instantiate()
+				self.add_child(fish)
+			state = 2
+		2:
+			if enemies_left <= fish_returned:
+				self.queue_free()
 
 
 # Handles the flashing effect of the spawner

@@ -9,7 +9,7 @@ script = ExtResource("1_taudh")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture_repeat = 1
-position = Vector2(2, -65)
+position = Vector2(9, -28)
 texture = ExtResource("2_di4kb")
 
 [node name="start_timer" type="Timer" parent="."]

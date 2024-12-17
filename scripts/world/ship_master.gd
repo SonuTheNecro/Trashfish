@@ -4,6 +4,7 @@ const chandler_ship = preload("res://scenes/enemy/chandler_ship.tscn")
 const raft_ship = preload("res://scenes/enemy/raft_enemy.tscn")
 const kris_ship = preload("res://scenes/enemy/kris_ship.tscn")
 const karl_ship = preload("res://scenes/enemy/karl_ship.tscn")
+const orca =      preload("res://scenes/enemy/fish_spawner.tscn")
 @export var timer_wait_time : float
 @export var max_entities : int = 30
 var entities_spawned : int
@@ -32,8 +33,8 @@ func _on_delete_timer_timeout() -> void:
 	
 func spawn_new_enemy() -> void:
 	var c = get_parent().score / 5
-	if c > 5:
-		c = 5
+	if c > 6:
+		c = 6
 	if c <= 0:
 		c = 1
 	var a : int = randi() % c
@@ -49,7 +50,10 @@ func spawn_new_enemy() -> void:
 			b = kris_ship.instantiate()
 		4: 
 			b = karl_ship.instantiate()
+		5:
+			b = orca.instantiate()
 	#b = kris_ship.instantiate()
+	
 	b.set_global_scale(Vector2(2,2))
 	self.add_child(b)
 	self.timer.start()
