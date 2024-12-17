@@ -30,8 +30,10 @@ func _on_delete_timer_timeout() -> void:
 		return
 	spawn_new_enemy()
 
-	
+
+# Handles spawning enemies
 func spawn_new_enemy() -> void:
+	# so we can have ramping difficulty, so its harder enemies the further u go
 	var c = get_parent().score / 5
 	if c > 6:
 		c = 6
@@ -53,7 +55,7 @@ func spawn_new_enemy() -> void:
 		5:
 			b = orca.instantiate()
 	#b = kris_ship.instantiate()
-	
+	#b = orca.instantiate()
 	b.set_global_scale(Vector2(2,2))
 	self.add_child(b)
 	self.timer.start()

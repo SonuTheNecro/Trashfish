@@ -5,9 +5,14 @@ var state : int = 0
 var fish
 const play_slot_scene = preload("res://scenes/enemy/orca.tscn")
 func _ready():
-	# change these values later
-	self.global_position.x = 50
-	self.global_position.y = randi() % 600 + 400
+	# Spawn on left or right side of screen
+	match randi() % 2:
+		0:
+			self.global_position.x = 50
+		1:
+			self.global_position.x = 1870
+	#print(global_position.x)
+	self.global_position.y = randi() % 700 + 400
 	$start_timer.start(5)
 	$flash_timer.start()
 

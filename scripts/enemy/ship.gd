@@ -56,7 +56,7 @@ func _process(delta: float) -> void:
 		# We have run out of things to drop, so lets' be set to despawn!
 		3:
 			
-			if self.counter == 0:
+			if self.counter <= 0:
 				# Reset Karl Jacobs Animation
 				if self.id == 4:
 					self.get_parent().get_node("AnimatedSprite2D").play("default")

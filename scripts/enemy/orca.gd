@@ -4,16 +4,26 @@ extends Node2D
 var endPos : Vector2
 var angle : float
 var direction : Vector2
+var parentX : int
 func _ready():
-	endPos.y =  randi() % 700 + 100
-	endPos.x = 2000
-
-	global_position.y =  randi() % 700 + 100
-	global_position.x = -100
+	
+	parentX = get_parent().global_position.x
+	speed += randi() % 50
+	if parentX == 50:
+		endPos.x = 2000
+		endPos.y =  randi() % 700 + 100
+		global_position.x = -100
+		global_position.y =  randi() % 800 + 300
+	else:
+		endPos.x = -100
+		endPos.y =  randi() % 700 + 100
+		global_position.x = 2000
+		global_position.y =  randi() % 800 + 300
+		$AnimatedSprite2D.flip_h = true
 	
 	angle = global_position.angle_to_point(endPos)
 	direction = Vector2(cos(angle), sin(angle)) 
-	speed += randi() % 50
+	
 	$AnimatedSprite2D.play("default")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

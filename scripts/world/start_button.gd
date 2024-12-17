@@ -12,7 +12,7 @@ func load_save_data():
 	var error = config.load("user://savedata.cfg")
 	if error != OK:
 		config = ConfigFile.new()
-		config.set_value("player", "high_score", 0)
+		config.set_value("player", "classic_high_score", 0)
 		config.save("user://savedata.cfg")
 		print("No Save file found!")
 	else:
