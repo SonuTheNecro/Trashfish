@@ -30,6 +30,7 @@ func _process(delta):
 			state = 2
 		2:
 			if enemies_left <= fish_returned:
+				self.get_parent().entities_spawned -= 1
 				self.queue_free()
 
 
