@@ -78,7 +78,6 @@ animations = [{
 script = ExtResource("1_rbg3h")
 
 [node name="ship_component" parent="." instance=ExtResource("1_1s1xa")]
-counter = 1
 speed = 1
 id = 4
 wait_time = 0.1

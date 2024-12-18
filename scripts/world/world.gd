@@ -17,7 +17,7 @@ func _process(_delta: float) -> void:
 		return
 	if score > high_score:
 		high_score = score
-		config.set_value("player", "classic_high_score", 0)
+		config.set_value("player", "classic_high_score", high_score)
 		config.save("user://savedata.cfg")
 	
 	$Panel/score.text = "Score: %d" % score
@@ -34,8 +34,6 @@ func get_player_position() -> Vector2:
 func update_hud_when_dead():
 	$Panel/score.text = "Score: %d" % score
 	$Panel/health.text = "Health: %d" % $player.get_health()
-	config.set_value("player", "classic_high_score", 0)
+	config.set_value("player", "classic_high_score", high_score)
 	config.save("user://savedata.cfg")
-
-
-# Saves the game score
+	

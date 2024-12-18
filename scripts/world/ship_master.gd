@@ -8,7 +8,7 @@ const orca =      preload("res://scenes/enemy/fish_spawner.tscn")
 @export var timer_wait_time : float
 @export var max_entities : int = 30
 var entities_spawned : int
-
+var score : int
 var timer : Timer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,7 +34,15 @@ func _on_delete_timer_timeout() -> void:
 # Handles spawning enemies
 func spawn_new_enemy() -> void:
 	# so we can have ramping difficulty, so its harder enemies the further u go
-	var c = get_parent().score / 5
+	score = get_parent().score
+	var c = score / 5
+	if score % 40 == 0 and score != 0:
+		timer_wait_time -= 1
+		if timer_wait_time <= 1:
+			timer_wait_time = 1
+		self.timer.wait_time = timer_wait_time
+	if score % 30 == 0 and score != 0:
+		max_entities += 1
 	if c > 6:
 		c = 6
 	if c <= 0:
