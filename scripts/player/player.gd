@@ -4,6 +4,7 @@ const acceleration : int = 20
 var starve : int = 100
 @export var health : int = 6
 @export var max_starve : int = 100
+@export var max_health : int = 10
 @export var world_id : int = 3
 
 
@@ -86,8 +87,8 @@ func decrease_health() :
 
 func increase_health():
 	self.health += 1;
-	if health > 10:
-		health = 10
+	if health > max_health:
+		health = max_health
 func player_death():
 	self.get_parent().update_hud_when_dead()
 	self.health = 0

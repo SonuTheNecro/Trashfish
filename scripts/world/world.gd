@@ -22,7 +22,7 @@ func _process(_delta: float) -> void:
 	
 	$Panel/score.text = "Score: %d" % score
 	$Panel/high_score.text = "High Score: %d" % high_score
-	$Panel/health.text = "Health: %d" % $player.get_health()
+	$Panel/health.text = "X %d" % $player.get_health()
 	
 
 

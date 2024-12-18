@@ -298,6 +298,7 @@ animations = [{
 [node name="player" type="CharacterBody2D" groups=["player"]]
 texture_filter = 1
 script = ExtResource("1_edec7")
+max_health = 6
 
 [node name="body" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

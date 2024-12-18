@@ -15,9 +15,9 @@ func _ready() -> void:
 	var spot_on_screen_to_spawn_at : int = randi() % 2
 	match spot_on_screen_to_spawn_at:
 		0:
-			self.get_parent().global_position.x = 0
+			self.get_parent().global_position.x = -100
 		1:
-			self.get_parent().global_position.x = 1900
+			self.get_parent().global_position.x = 2000
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -62,7 +62,7 @@ func _process(delta: float) -> void:
 					self.get_parent().get_node("AnimatedSprite2D").play("default")
 				self.state = 4
 				nextX = randi() % 2
-				nextX = 0 if nextX == 0 else 1900
+				nextX = -100 if nextX == 0 else 2000
 				direction = 1 if get_parent().global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
 				#get_parent().queue_free()
 			return

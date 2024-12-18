@@ -17,9 +17,9 @@ func _ready() -> void:
 	speed += randi() % 150
 	match spot_on_screen_to_spawn_at:
 		0:
-			self.global_position.x = 0
+			self.global_position.x = -100
 		1:
-			self.global_position.x = 1900
+			self.global_position.x = 2000
 	$shoot_timer.wait_time += randi() % 10
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -52,7 +52,7 @@ func _process(delta: float) -> void:
 			return
 		3:
 			nextX = randi() % 2
-			nextX = 0 if nextX == 0 else 1900
+			nextX = -100 if nextX == 0 else 2000
 			direction = 1 if self.global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
 			self.state = 4
 			return
