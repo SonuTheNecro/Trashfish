@@ -1,15 +1,20 @@
 extends CharacterBody2D
 var speed : int = 200
 const acceleration : int = 20
+var starve : int = 100
 @export var health : int = 6
+@export var max_starve : int = 100
 @export var world_id : int = 3
-const trash_can = preload("res://scenes/player/trash_can.tscn")
+
+
 var isAttacking : bool = false
 var isDead : bool = false
 var isHoneyd : bool = false
 var isIced : bool = false
-var drop
 
+
+var drop
+const trash_can = preload("res://scenes/player/trash_can.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$debuff_master/honey.play("default")
@@ -71,11 +76,6 @@ func get_health():
 # Variables to mess with player health
 func set_health(change : int):
 	self.health = change
-
-func minus_health(change: int):
-	self.health -= change
-	if health <= 0:
-		player_death()
 
 func decrease_health() :
 	#print(health)
@@ -143,7 +143,7 @@ func _on_attack_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		return
 	if body.is_in_group("drop"):
-		self.increase_health()
+		self.reset_starvation()
 		body.get_parent().attacked()
 		return
 	if body.is_in_group("main_menu_block"):
@@ -165,3 +165,18 @@ func _on_ice_timer_timeout() -> void:
 func _on_flash_timer_timeout() -> void:
 	$body.material.set_shader_parameter("flash_modifer", 0)
 	$head.material.set_shader_parameter("flash_modifer", 0)
+	
+	
+
+
+# every second we will take a bit of starvation
+# default is you take a hit every 20 seconds of not eating
+func _on_starve_timer_timeout():
+	starve -= 5
+	if starve == 0:
+		self.decrease_health()
+		self.reset_starvation()
+		
+# Resets starvation whenever called
+func reset_starvation():
+	self.starve = max_starve

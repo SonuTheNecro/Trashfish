@@ -321,8 +321,7 @@ position = Vector2(5, -31)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_1cqym")
 
-[node name="Health_Timer" type="Timer" parent="."]
-wait_time = 5.0
+[node name="Starve_Timer" type="Timer" parent="."]
 autostart = true
 
 [node name="attack_hitbox" type="Area2D" parent="." groups=["attack"]]
@@ -361,7 +360,7 @@ wait_time = 2.0
 one_shot = true
 
 [connection signal="timeout" from="body/flash_timer" to="." method="_on_flash_timer_timeout"]
-[connection signal="timeout" from="Health_Timer" to="." method="decrease_health"]
+[connection signal="timeout" from="Starve_Timer" to="." method="_on_starve_timer_timeout"]
 [connection signal="body_entered" from="attack_hitbox" to="." method="_on_attack_hitbox_body_entered"]
 [connection signal="timeout" from="attack_hitbox/attack_timer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="debuff_master/honey_timer" to="." method="_on_honey_timer_timeout"]
