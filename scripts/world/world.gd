@@ -33,7 +33,7 @@ func get_player_position() -> Vector2:
 # Final hud update when dead
 func update_hud_when_dead():
 	$Panel/score.text = "Score: %d" % score
-	$Panel/health.text = "Health: %d" % $player.get_health()
+	$Panel/health.text = "X %d" % $player.get_health()
 	config.set_value("player", "classic_high_score", high_score)
 	config.save("user://savedata.cfg")
 	

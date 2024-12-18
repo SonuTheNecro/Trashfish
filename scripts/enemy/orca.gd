@@ -5,20 +5,22 @@ var endPos : Vector2
 var angle : float
 var direction : Vector2
 var parentX : int
+var parentY : int
 func _ready():
 	
 	parentX = get_parent().global_position.x
+	parentY = get_parent().global_position.y
 	speed += randi() % 50
 	if parentX == 50:
 		endPos.x = 2000
 		endPos.y =  randi() % 700 + 100
 		global_position.x = -100
-		global_position.y =  randi() % 800 + 300
+		global_position.y =  parentY
 	else:
 		endPos.x = -100
 		endPos.y =  randi() % 700 + 100
 		global_position.x = 2000
-		global_position.y =  randi() % 800 + 300
+		global_position.y =  parentY
 		$AnimatedSprite2D.flip_h = true
 	
 	angle = global_position.angle_to_point(endPos)
