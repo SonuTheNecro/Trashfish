@@ -24,8 +24,11 @@ func _process(_delta: float) -> void:
 	$Panel/high_score.text = "High Score: %d" % high_score
 	$Panel/health.text = "X %d" % $player.get_health()
 	
+# heals player from world node to save some brain power
+func heal_player():
+	get_node("player").increase_health()
 
-
+# world has access to player pos so comps can access whenever
 func get_player_position() -> Vector2:
 	#print(get_node("player").global_position.x, ":", get_node("player").global_position.y)
 	return get_node("player").global_position
@@ -36,4 +39,5 @@ func update_hud_when_dead():
 	$Panel/health.text = "X %d" % $player.get_health()
 	config.set_value("player", "classic_high_score", high_score)
 	config.save("user://savedata.cfg")
+	
 	

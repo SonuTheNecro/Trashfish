@@ -76,12 +76,12 @@ func _on_shoot_timer_timeout() -> void:
 	self.add_child(bullet)
 	
 # Checks if value a/b are in range of each other
-func check_in_range(a : float, b : float , range : int ) -> bool:
+func check_in_range(a : float, b : float , range_of_value : int ) -> bool:
 	if a > b:
-		if a - b < range:
+		if a - b < range_of_value:
 			return true
 	if a < b:
-		if b - a < range:
+		if b - a < range_of_value:
 			return true
 	return false
 

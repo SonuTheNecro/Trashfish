@@ -17,7 +17,7 @@ func _ready():
 	$flash_timer.start()
 
 
-func _process(delta):
+func _process(_delta):
 	match state:
 		# We are still starting here
 		0:

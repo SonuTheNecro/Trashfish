@@ -83,12 +83,14 @@ func decrease_health() :
 	if self.world_id == 0 or self.world_id == 1:
 		return
 	self.health -= 1;
-	self.flash_body();
+	self.damage_flash_body();
 
 func increase_health():
 	self.health += 1;
 	if health > max_health:
 		health = max_health
+	self.heal_flash_body()
+	
 func player_death():
 	self.get_parent().update_hud_when_dead()
 	self.health = 0
@@ -125,23 +127,30 @@ func set_debuff(debuff : String) -> void:
 			$debuff_master/ice_timer.start()
 
 # Flashes the player body when damaged
-func flash_body():
+func damage_flash_body():
 	if health <= 0:
 		return
-	$body.material.set_shader_parameter("flash_color",Color(0.76,0,0,0))
+	$body.material.set_shader_parameter("flash_color",Color(0.76,0,0,1.0))
 	$body.material.set_shader_parameter("flash_modifer", 0.7)
-	$head.material.set_shader_parameter("flash_color",Color(0.76,0,0,0))
+	$head.material.set_shader_parameter("flash_color",Color(0.76,0,0,1.0))
 	$head.material.set_shader_parameter("flash_modifer", 0.7)
-	
 	$body/flash_timer.start()
-
+# flashes player body green when healed
+func heal_flash_body():
+	if health <= 0 or health > max_health:
+		return
+	$body.material.set_shader_parameter("flash_color",Color(0.13,0.86,0.14,1.0))
+	$body.material.set_shader_parameter("flash_modifer", 0.7)
+	$head.material.set_shader_parameter("flash_color",Color(0.13,0.86,0.14,1.0))
+	$head.material.set_shader_parameter("flash_modifer", 0.7)
+	$body/flash_timer.start()
 
 # When the attack timer resets (CD), we should turn off hitboxes
 func _on_attack_timer_timeout() -> void:
 	get_node("attack_hitbox/CollisionShape2D").set_deferred("disabled", true)
 	isAttacking = false
 
-
+# handles what the attack hitbox calls on whatever it is attacking
 func _on_attack_hitbox_body_entered(body: Node2D) -> void:
 	#print(body)
 	if body.is_in_group("player"):
