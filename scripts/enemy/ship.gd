@@ -26,6 +26,8 @@ func _process(delta: float) -> void:
 	# IF we aren't moving and we aren't dropping items, then we should find a new spot to go
 	match state:
 		0:
+			if self.id == 4 or self.id == 3:
+				get_parent().get_child(1).play("swim")
 			nextX = randi() % 1300 + 450
 			#nextX = 550.0	
 			state = 1
@@ -43,8 +45,8 @@ func _process(delta: float) -> void:
 		# We have arrived at our spot but we haven't dropped an item yet
 		2:
 			# Karl Jacobs has an additional animation
-			if self.id == 4:
-				get_parent().get_child(1).play("swim")
+			if self.id == 4 or self.id == 3:
+				get_parent().get_child(1).play("default")
 			# Wait for some time if we'd like
 			if $wait_timer.time_left > 0.01 and not $wait_timer.is_stopped():
 				return
@@ -58,8 +60,8 @@ func _process(delta: float) -> void:
 			
 			if self.counter <= 0:
 				# Reset Karl Jacobs Animation
-				if self.id == 4:
-					self.get_parent().get_node("AnimatedSprite2D").play("default")
+				if self.id == 4 or self.id == 3:
+					self.get_parent().get_node("AnimatedSprite2D").play("swim")
 				self.state = 4
 				nextX = randi() % 2
 				nextX = -100 if nextX == 0 else 2000

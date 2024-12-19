@@ -128,8 +128,11 @@ func set_debuff(debuff : String) -> void:
 func flash_body():
 	if health <= 0:
 		return
+	$body.material.set_shader_parameter("flash_color",Color(0.76,0,0,0))
 	$body.material.set_shader_parameter("flash_modifer", 0.7)
+	$head.material.set_shader_parameter("flash_color",Color(0.76,0,0,0))
 	$head.material.set_shader_parameter("flash_modifer", 0.7)
+	
 	$body/flash_timer.start()
 
 

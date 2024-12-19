@@ -2,7 +2,7 @@ extends Node2D
 const beast_ship = preload("res://scenes/enemy/mrbeast_ship.tscn")
 const chandler_ship = preload("res://scenes/enemy/chandler_ship.tscn")
 const raft_ship = preload("res://scenes/enemy/raft_enemy.tscn")
-const kris_ship = preload("res://scenes/enemy/kris_ship.tscn")
+const pirate_ship = preload("res://scenes/enemy/pirate_ship.tscn")
 const karl_ship = preload("res://scenes/enemy/karl_ship.tscn")
 const orca =      preload("res://scenes/enemy/fish_spawner.tscn")
 @export var timer_wait_time : float
@@ -58,7 +58,7 @@ func spawn_new_enemy() -> void:
 		2:
 			b = raft_ship.instantiate()
 		3:
-			b = kris_ship.instantiate()
+			b = pirate_ship.instantiate()
 		4: 
 			b = karl_ship.instantiate()
 		5:
