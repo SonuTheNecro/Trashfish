@@ -1,6 +1,6 @@
 extends Node2D
-@export var timer_length : int
-@export var delete_timer_length : int
+@export var timer_length : float
+@export var delete_timer_length : float
 @export var fall_speed : int
 @export var rotation_speed : float
 var isActive : bool = true
