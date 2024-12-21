@@ -94,7 +94,7 @@ func get_spawnable_drop():
 		return
 	# Karl jacobs needs all the drops...
 	if self.id == 4:
-		match randi() % 5:
+		match randi() % 6:
 			0:
 				drop = get_parent().spawnable_drop1.instantiate()
 			1:
@@ -105,6 +105,8 @@ func get_spawnable_drop():
 				drop = get_parent().spawnable_drop4.instantiate()
 			4:
 				drop = get_parent().spawnable_drop5.instantiate()
+			5: 
+				drop = get_parent().spawnable_drop6.instantiate()
 		return
 	
 	drop = get_parent().spawnable_drop.instantiate()

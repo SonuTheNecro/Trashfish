@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dj4vdaxwdewiu"]
+[gd_scene load_steps=11 format=3 uid="uid://dj4vdaxwdewiu"]
 
 [ext_resource type="Script" path="res://scripts/world/collision_polygon_2d.gd" id="1_4hx4q"]
 [ext_resource type="Script" path="res://scripts/world/world.gd" id="1_gcfhd"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/world/ship_master.gd" id="5_4ij4q"]
 [ext_resource type="Texture2D" uid="uid://cgyve4kk648yh" path="res://art/world/sky.png" id="5_ou8na"]
 [ext_resource type="Texture2D" uid="uid://bfig4ppqc525o" path="res://art/world/health.png" id="7_tqa8c"]
+[ext_resource type="Texture2D" uid="uid://djpnypv17cuuo" path="res://art/world/starve_icon.png" id="8_s7dsv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wl38v"]
 bg_color = Color(0, 0, 0, 1)
@@ -88,10 +89,10 @@ texture = ExtResource("7_tqa8c")
 texture_filter = 1
 texture_repeat = 1
 layout_mode = 0
-offset_left = 87.0
-offset_top = -8.0
-offset_right = 157.0
-offset_bottom = 20.0
+offset_left = 107.0
+offset_top = -11.0
+offset_right = 177.0
+offset_bottom = 17.0
 scale = Vector2(4.2, 4.2)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -100,10 +101,11 @@ theme_override_font_sizes/font_size = 20
 text = "X 3"
 
 [node name="starve_bar" type="ProgressBar" parent="."]
-offset_left = 18.0
-offset_top = 92.0
-offset_right = 217.0
-offset_bottom = 138.0
+modulate = Color(1, 1, 1, 0.74902)
+offset_left = 109.0
+offset_top = 104.0
+offset_right = 254.0
+offset_bottom = 147.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.917647, 0, 0, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_wl38v")
@@ -111,3 +113,10 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_pjxve")
 value = 50.0
 rounded = true
 show_percentage = false
+
+[node name="starve_icon" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.901961)
+texture_filter = 1
+position = Vector2(58, 127)
+scale = Vector2(3, 3)
+texture = ExtResource("8_s7dsv")

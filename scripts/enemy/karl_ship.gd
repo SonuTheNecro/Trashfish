@@ -4,6 +4,7 @@ const spawnable_drop2 = preload("res://scenes/enemy/honey_drop.tscn")
 const spawnable_drop3 = preload("res://scenes/enemy/ice_drop.tscn")
 const spawnable_drop4 = preload("res://scenes/enemy/recycle_drop.tscn")
 const spawnable_drop5 = preload("res://scenes/enemy/trash_drop.tscn")
+const spawnable_drop6 = preload("res://scenes/enemy/heart_drop.tscn")
 
 
 func _ready() -> void:

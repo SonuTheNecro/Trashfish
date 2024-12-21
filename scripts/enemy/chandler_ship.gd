@@ -1,7 +1,7 @@
 extends Node2D
 const spawnable_drop1 = preload("res://scenes/enemy/trash_drop.tscn")
-#const spawnable_drop2 = preload("res://scenes/enemy/recycle_drop.tscn")
-const spawnable_drop2 = preload("res://scenes/enemy/heart_drop.tscn")
+const spawnable_drop2 = preload("res://scenes/enemy/recycle_drop.tscn")
+#const spawnable_drop2 = preload("res://scenes/enemy/heart_drop.tscn")
 
 var parent_score : int
 func _ready() -> void:
