@@ -9,7 +9,7 @@ var delete_timer: Timer
 var xDirection : float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	xDirection = cos(randi() % 3)
+	xDirection = cos(randi() % 4)
 	active_timer = Timer.new()
 	active_timer.wait_time = timer_length
 	active_timer.one_shot = true

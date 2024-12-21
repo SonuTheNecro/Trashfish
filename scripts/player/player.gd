@@ -45,6 +45,12 @@ func handle_player_input(delta):
 	var direction : Vector2 = Input.get_vector("move_left","move_right","move_up","move_down")
 	self.velocity.x = lerp(velocity.x, speed * direction.x, acceleration * delta)
 	self.velocity.y = lerp(velocity.y, speed * direction.y, acceleration * delta)
+	#print("x:", velocity.x, "y: ", velocity.y)
+	self.rotation_degrees = 5 if not (abs(self.velocity.y) <= 1) else 0
+	self.rotation_degrees *= -1 if self.velocity.x < 0 else 1
+	self.rotation_degrees *= -1 if self.velocity.y < 0 else 1
+
+	
 # Handles basic player animations using bools/state machine
 func handle_player_animation():
 	if abs(velocity.x) > 0.001:
