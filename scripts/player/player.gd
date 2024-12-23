@@ -1,6 +1,6 @@
 extends CharacterBody2D
-var speed : int = 200
-const acceleration : int = 20
+var speed : float = 250
+const acceleration : float = 22
 var starve : int = 100
 @export var health : int = 6
 @export var max_starve : int = 100
@@ -20,7 +20,6 @@ const trash_can = preload("res://scenes/player/trash_can.tscn")
 func _ready() -> void:
 	$debuff_master/honey.play("default")
 	$debuff_master/ice.play("default")
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -44,9 +43,9 @@ func _physics_process(delta):
 func handle_player_input(delta):
 	var direction : Vector2 = Input.get_vector("move_left","move_right","move_up","move_down")
 	self.velocity.x = lerp(velocity.x, speed * direction.x, acceleration * delta)
-	self.velocity.y = lerp(velocity.y, speed * direction.y, acceleration * delta)
+	self.velocity.y = lerp(velocity.y, speed * direction.y * 0.65, acceleration * delta)
 	#print("x:", velocity.x, "y: ", velocity.y)
-	self.rotation_degrees = 5 if not (abs(self.velocity.y) <= 1) else 0
+	self.rotation_degrees = 5 if not (abs(self.velocity.y) <= 10) else 0
 	self.rotation_degrees *= -1 if self.velocity.x < 0 else 1
 	self.rotation_degrees *= -1 if self.velocity.y < 0 else 1
 
@@ -122,14 +121,14 @@ func set_debuff(debuff : String) -> void:
 				$debuff_master/honey_timer.start()
 				return
 			isHoneyd = true
-			self.speed /= 2
+			self.speed /= 2.5
 			$debuff_master/honey_timer.start()
 		"ice":
 			if isIced:
 				$debuff_master/ice_timer.start()
 				return
 			isIced = true
-			self.speed /= 4
+			self.speed /= 5
 			$debuff_master/ice_timer.start()
 
 # Flashes the player body when damaged

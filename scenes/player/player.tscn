@@ -220,8 +220,8 @@ radius = 32.0
 height = 140.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jjfob"]
-radius = 27.0
-height = 106.0
+radius = 28.0
+height = 56.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bbmfk"]
 atlas = ExtResource("6_pyiet")
@@ -328,8 +328,7 @@ autostart = true
 [node name="attack_hitbox" type="Area2D" parent="." groups=["attack"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_hitbox" groups=["attack"]]
-position = Vector2(67, -32)
-rotation = 1.5708
+position = Vector2(89, -32)
 shape = SubResource("CapsuleShape2D_jjfob")
 disabled = true
 debug_color = Color(0.988541, 0, 0.300824, 0.42)
