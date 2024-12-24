@@ -426,7 +426,7 @@ wait_time = 1.66
 one_shot = true
 
 [node name="roll_cooldown_timer" type="Timer" parent="debuff_master"]
-wait_time = 5.0
+wait_time = 2.8
 one_shot = true
 
 [connection signal="timeout" from="body/flash_timer" to="." method="_on_flash_timer_timeout"]

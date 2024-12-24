@@ -33,7 +33,7 @@ func _physics_process(delta):
 		return
 	if Input.is_action_just_pressed("attack") and not isAttacking:
 		self.attack()
-	if Input.is_action_just_pressed("roll") and not isRolling:
+	if Input.is_action_just_pressed("roll") and not isRolling and $debuff_master/roll_cooldown_timer.is_stopped():
 		self.roll()
 	if self.health == 0:
 		player_death()
