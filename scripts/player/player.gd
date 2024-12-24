@@ -12,9 +12,10 @@ var isAttacking : bool = false
 var isDead : bool = false
 var isHoneyd : bool = false
 var isIced : bool = false
-
+var isRolling : bool = false
 
 var drop
+var direction : Vector2
 const trash_can = preload("res://scenes/player/trash_can.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,7 +33,8 @@ func _physics_process(delta):
 		return
 	if Input.is_action_just_pressed("attack") and not isAttacking:
 		self.attack()
-	
+	if Input.is_action_just_pressed("roll") and not isRolling:
+		self.roll()
 	if self.health == 0:
 		player_death()
 		return
@@ -41,7 +43,10 @@ func _physics_process(delta):
 	move_and_slide()
 # Handles basic player movement
 func handle_player_input(delta):
-	var direction : Vector2 = Input.get_vector("move_left","move_right","move_up","move_down")
+	if not isRolling:
+		direction = Input.get_vector("move_left","move_right","move_up","move_down")
+	
+	
 	self.velocity.x = lerp(velocity.x, speed * direction.x, acceleration * delta)
 	self.velocity.y = lerp(velocity.y, speed * direction.y * 0.65, acceleration * delta)
 	#print("x:", velocity.x, "y: ", velocity.y)
@@ -64,6 +69,12 @@ func handle_player_animation():
 			$head.play("attack")
 		false:
 			$head.play("idle")
+	match isRolling:
+		true:
+			$body.play("roll")
+			return
+		false:
+			$body.play("idle")
 	$body.play("idle")
 	
 # Flip the animations and hitboxes
@@ -75,6 +86,16 @@ func flip(value: bool):
 		$debuff_master/honey.flip_h = value
 		$debuff_master/ice.flip_h = value
 		
+# Handles the Player rolling logic
+func roll():
+	self.starve -= self.max_starve / 2
+	isRolling = true
+	self.speed *= 1.8
+	self.velocity = speed * direction
+	
+	$head.visible = false
+	$debuff_master/roll_timer.start()
+
 # Getter for health
 func get_health():
 	return self.health;
@@ -85,7 +106,7 @@ func set_health(change : int):
 
 func decrease_health() :
 	#print(health)
-	if self.world_id == 0 or self.world_id == 1:
+	if self.world_id == 0 or self.world_id == 1 or (isRolling and not starve <= 0):
 		return
 	self.health -= 1;
 	self.damage_flash_body();
@@ -184,17 +205,24 @@ func _on_flash_timer_timeout() -> void:
 	$body.material.set_shader_parameter("flash_modifer", 0)
 	$head.material.set_shader_parameter("flash_modifer", 0)
 	
-	
-
+func _on_roll_timer_timeout():
+	$head.visible = true
+	self.speed /= 1.8
+	isRolling = false
+	$debuff_master/roll_cooldown_timer.start()
 
 # every second we will take a bit of starvation
 # default is you take a hit every 20 seconds of not eating
 func _on_starve_timer_timeout():
 	starve -= 5
-	if starve == 0:
+	if starve <= 0:
 		self.decrease_health()
 		self.reset_starvation()
 		
 # Resets starvation whenever called
 func reset_starvation():
 	self.starve = max_starve
+
+
+
+	
