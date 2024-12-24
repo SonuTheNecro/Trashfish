@@ -22,14 +22,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	#print(get_parent().global_position.x, ":",get_parent().global_position.y)
 	# IF we aren't moving and we aren't dropping items, then we should find a new spot to go
 	match state:
 		0:
 			if self.id == 4 or self.id == 3:
 				get_parent().get_child(1).play("swim")
 			nextX = randi() % 1300 + 450
-			#nextX = 550.0	
 			state = 1
 			direction = 1 if get_parent().global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
 			get_parent().get_node("AnimatedSprite2D").flip_h = true if direction == 1 else false
@@ -37,7 +35,6 @@ func _process(delta: float) -> void:
 		# We have a spot to go to but we aren't there yet
 		1:
 			self.get_parent().global_position.x += direction * speed * delta
-			#print(int(self.get_parent().global_position.x),":",nextX)
 			if check_in_range(self.get_parent().global_position.x,nextX, speed * delta):
 				state = 2
 				$wait_timer.start()
@@ -66,12 +63,10 @@ func _process(delta: float) -> void:
 				nextX = randi() % 2
 				nextX = -100 if nextX == 0 else 2000
 				direction = 1 if get_parent().global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
-				#get_parent().queue_free()
 			return
 		# Move towards our despawn position
 		4:
 			self.get_parent().global_position.x += direction * speed * delta
-			#print(int(self.get_parent().global_position.x),":",nextX)
 			if check_in_range(self.get_parent().global_position.x,nextX, speed * delta):
 				state = 5
 			get_parent().get_node("AnimatedSprite2D").flip_h = true if direction == 1 else false

@@ -24,7 +24,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	#if shoot_timer.wait_time > 0.01:
 	gun.set_gun_rotation()
 	match state:
 		0:
@@ -36,13 +35,11 @@ func _process(delta: float) -> void:
 		# We have a spot to go to but we aren't there yet
 		1:
 			self.global_position.x += direction * speed * delta
-			#print(int(self.get_parent().global_position.x),":",nextX)
 			if check_in_range(self.global_position.x,nextX, speed * delta):
 				state = 2
 			return
 		# We have arrived at our spot fire!
 		2:
-			#print($shoot_timer.is_stopped())
 			if bullets_left == 0:
 				state = 3
 				$shoot_timer.stop()
@@ -58,7 +55,6 @@ func _process(delta: float) -> void:
 			return
 		4:
 			self.global_position.x += direction * speed * delta
-			#print(int(self.get_parent().global_position.x),":",nextX)
 			if check_in_range(self.global_position.x,nextX, speed * delta):
 				state = 5
 			self.flip()

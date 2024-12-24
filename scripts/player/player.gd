@@ -49,7 +49,6 @@ func handle_player_input(delta):
 	
 	self.velocity.x = lerp(velocity.x, speed * direction.x, acceleration * delta)
 	self.velocity.y = lerp(velocity.y, speed * direction.y * 0.65, acceleration * delta)
-	#print("x:", velocity.x, "y: ", velocity.y)
 	self.rotation_degrees = 5 if not (abs(self.velocity.y) <= 10) else 0
 	self.rotation_degrees *= -1 if self.velocity.x < 0 else 1
 	self.rotation_degrees *= -1 if self.velocity.y < 0 else 1
@@ -105,7 +104,6 @@ func set_health(change : int):
 	self.health = change
 
 func decrease_health() :
-	#print(health)
 	if self.world_id == 0 or self.world_id == 1 or (isRolling and not starve <= 0):
 		return
 	self.health -= 1;
@@ -128,10 +126,8 @@ func player_death():
 	
 # If we attack, then we should turn on attack hitboxes
 func attack():
-	#print("just_attacked!")
 	get_node("attack_hitbox/CollisionShape2D").set_deferred("disabled", false)
 	isAttacking = true
-	#$AnimatedSprite2D.play("attack")
 	$attack_hitbox/attack_timer.start()
 	
 # Sets the player's debuff 
@@ -178,7 +174,6 @@ func _on_attack_timer_timeout() -> void:
 
 # handles what the attack hitbox calls on whatever it is attacking
 func _on_attack_hitbox_body_entered(body: Node2D) -> void:
-	#print(body)
 	if body.is_in_group("player"):
 		return
 	if body.is_in_group("drop"):

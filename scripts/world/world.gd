@@ -30,7 +30,6 @@ func heal_player():
 
 # world has access to player pos so comps can access whenever
 func get_player_position() -> Vector2:
-	#print(get_node("player").global_position.x, ":", get_node("player").global_position.y)
 	return get_node("player").global_position
 # world has access to player starvation
 func get_player_starvation() -> int:

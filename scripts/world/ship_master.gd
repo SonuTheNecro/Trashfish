@@ -17,9 +17,6 @@ func _ready() -> void:
 	self.timer.one_shot = true
 	self.add_child(timer)
 	self.timer.timeout.connect(_on_delete_timer_timeout)
-	#var a = chandler_ship.instantiate()
-	#a.set_global_scale(Vector2(4,4))
-	#self.add_child(a)
 	spawn_new_enemy()
 	
 
@@ -63,8 +60,6 @@ func spawn_new_enemy() -> void:
 			b = karl_ship.instantiate()
 		5:
 			b = orca.instantiate()
-	#b = kris_ship.instantiate()
-	#b = orca.instantiate()
 	b.set_global_scale(Vector2(2,2))
 	self.add_child(b)
 	self.timer.start()

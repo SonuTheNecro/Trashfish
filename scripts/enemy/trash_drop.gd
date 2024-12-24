@@ -6,7 +6,6 @@ func _ready() -> void:
 
 func timer_timeout_event():
 	pass
-	#self.queue_free()
 
 func attacked():
 	self.get_parent().get_parent().get_parent().score += 1

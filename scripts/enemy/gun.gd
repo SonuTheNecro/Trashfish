@@ -5,7 +5,6 @@ func _process(_delta: float) -> void:
 	pass
 
 func set_gun_rotation():
-	#print(get_angle_to_player())
 	self.set_global_rotation(get_angle_to_player())
 	self.flip_v = 1 if self.global_rotation > 1.57 else 0
 

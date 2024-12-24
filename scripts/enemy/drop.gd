@@ -42,8 +42,7 @@ func _on_active_timer_timeout() -> void:
 	get_parent().timer_timeout_event()
 
 func _on_delete_timer_timeout() -> void:
-	#self.get_node("active_timer").queue_free()
-	#self.get_node("delete_timer").queue_free()
+
 	if get_parent().get_parent() == null:
 		self.get_parent().queue_free()
 	# Karl Jacobs Check

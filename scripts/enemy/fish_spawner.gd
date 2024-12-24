@@ -11,7 +11,6 @@ func _ready():
 			self.global_position.x = 50
 		1:
 			self.global_position.x = 1870
-	#print(global_position.x)
 	self.global_position.y = randi() % 700 + 400
 	$start_timer.start(5)
 	$flash_timer.start()

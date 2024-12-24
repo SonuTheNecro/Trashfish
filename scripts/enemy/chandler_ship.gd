@@ -17,6 +17,8 @@ func _ready() -> void:
 			$ship_component.counter += randi() % 4
 		3:
 			$ship_component.counter += randi() % 3
+		_: 
+			$ship_component.counter += randi() % 2
 	
 	$AnimatedSprite2D.play("default")
 	$ship_component.speed += randi() % 55
