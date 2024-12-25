@@ -6,7 +6,8 @@ var starve : int = 100
 @export var max_starve : int = 100
 @export var max_health : int = 10
 @export var world_id : int = 3
-
+@export var honey_speed : int = 2.5
+@export var ice_speed : int = 5
 
 var isAttacking : bool = false
 var isDead : bool = false
@@ -31,7 +32,7 @@ func _physics_process(delta):
 		self.isDead = false
 	if isDead:
 		return
-	if Input.is_action_just_pressed("attack") and not isAttacking:
+	if Input.is_action_just_pressed("attack") and not isAttacking and not isRolling:
 		self.attack()
 	if Input.is_action_just_pressed("roll") and not isRolling and $debuff_master/roll_cooldown_timer.is_stopped():
 		self.roll()
@@ -138,14 +139,14 @@ func set_debuff(debuff : String) -> void:
 				$debuff_master/honey_timer.start()
 				return
 			isHoneyd = true
-			self.speed /= 2.5
+			self.speed /= honey_speed
 			$debuff_master/honey_timer.start()
 		"ice":
 			if isIced:
 				$debuff_master/ice_timer.start()
 				return
 			isIced = true
-			self.speed /= 5
+			self.speed /= ice_speed
 			$debuff_master/ice_timer.start()
 
 # Flashes the player body when damaged
@@ -187,12 +188,12 @@ func _on_attack_hitbox_body_entered(body: Node2D) -> void:
 
 
 func _on_honey_timer_timeout() -> void:
-	self.speed = speed * 2
+	self.speed = speed * honey_speed
 	isHoneyd = false
 
 
 func _on_ice_timer_timeout() -> void:
-	self.speed = speed * 4
+	self.speed = speed * ice_speed
 	isIced = false
 
 

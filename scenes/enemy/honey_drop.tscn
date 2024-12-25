@@ -43,6 +43,8 @@ height = 138.0
 script = ExtResource("1_fjm2x")
 
 [node name="drop_component" parent="." instance=ExtResource("1_mb7vy")]
+timer_length = 2.0
+delete_timer_length = 1.0
 fall_speed = 10
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
