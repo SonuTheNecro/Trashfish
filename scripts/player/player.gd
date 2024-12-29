@@ -46,7 +46,7 @@ func _physics_process(delta):
 func handle_player_input(delta):
 	if not isRolling:
 		direction = Input.get_vector("move_left","move_right","move_up","move_down")
-	print(self.velocity.x, ":", self.velocity.y)
+	#print(self.velocity.x, ":", self.velocity.y)
 	
 	self.velocity.x = lerp(velocity.x, speed * direction.x, acceleration * delta)
 	self.velocity.y = lerp(velocity.y, speed * direction.y * 0.65, acceleration * delta)

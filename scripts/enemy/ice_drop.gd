@@ -9,7 +9,7 @@ func timer_timeout_event():
 	self.rotation_degrees = 0
 	get_node("explosion_hitbox/CollisionPolygon2D").set_deferred("disabled", false)
 	$AnimatedSprite2D.play("explosion")
-
+	get_node("StaticBody2D/CollisionPolygon2D").set_deferred("disabled", true)
 
 func _on_explosion_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
