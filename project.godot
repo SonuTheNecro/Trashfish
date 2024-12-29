@@ -16,6 +16,7 @@ config/use_custom_user_dir=true
 config/custom_user_dir_name="trashfish"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+config/windows_native_icon="res://art/misc/icon.ico"
 
 [display]
 
