@@ -13,7 +13,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_deb2k"]
 resource_local_to_scene = true
 shader = ExtResource("2_6cm53")
-shader_parameter/flash_color = Color(0.768627, 0, 0, 1)
+shader_parameter/flash_color = Color(0.662745, 0.509804, 0.168627, 1)
 shader_parameter/flash_modifer = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uclss"]
@@ -367,7 +367,7 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_deb2k")
 position = Vector2(7, -33)
 sprite_frames = SubResource("SpriteFrames_0o1mn")
-animation = &"roll"
+animation = &"idle"
 
 [node name="flash_timer" type="Timer" parent="body"]
 one_shot = true
@@ -436,3 +436,4 @@ one_shot = true
 [connection signal="timeout" from="debuff_master/honey_timer" to="." method="_on_honey_timer_timeout"]
 [connection signal="timeout" from="debuff_master/ice_timer" to="." method="_on_ice_timer_timeout"]
 [connection signal="timeout" from="debuff_master/roll_timer" to="." method="_on_roll_timer_timeout"]
+[connection signal="timeout" from="debuff_master/roll_cooldown_timer" to="." method="_on_roll_cooldown_timer_timeout"]

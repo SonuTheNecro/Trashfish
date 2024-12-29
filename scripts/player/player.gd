@@ -46,7 +46,7 @@ func _physics_process(delta):
 func handle_player_input(delta):
 	if not isRolling:
 		direction = Input.get_vector("move_left","move_right","move_up","move_down")
-	
+	print(self.velocity.x, ":", self.velocity.y)
 	
 	self.velocity.x = lerp(velocity.x, speed * direction.x, acceleration * delta)
 	self.velocity.y = lerp(velocity.y, speed * direction.y * 0.65, acceleration * delta)
@@ -207,6 +207,14 @@ func _on_roll_timer_timeout():
 	isRolling = false
 	$debuff_master/roll_cooldown_timer.start()
 
+# lets player know they can roll again
+func _on_roll_cooldown_timer_timeout():
+	$body.material.set_shader_parameter("flash_color",Color(0.66,0.51,0.17,1.0))
+	$body.material.set_shader_parameter("flash_modifer", 0.7)
+	$head.material.set_shader_parameter("flash_color",Color(0.66,0.51,0.17,1.0))
+	$head.material.set_shader_parameter("flash_modifer", 0.7)
+	$body/flash_timer.start(0.5)
+
 # every second we will take a bit of starvation
 # default is you take a hit every 20 seconds of not eating
 func _on_starve_timer_timeout():
@@ -218,7 +226,3 @@ func _on_starve_timer_timeout():
 # Resets starvation whenever called
 func reset_starvation():
 	self.starve = max_starve
-
-
-
-	
