@@ -4,7 +4,7 @@ var high_score : int = 0
 var config : ConfigFile
 func _ready() -> void:
 	config = ConfigFile.new()
-	$starve_bar.max_value = get_node("player").max_starve
+	$CanvasLayer/starve_bar.max_value = get_node("player").max_starve
 	var error = config.load("user://savedata.cfg")
 	if error != OK:
 		print("error")
@@ -19,10 +19,10 @@ func _process(_delta: float) -> void:
 		high_score = score
 		config.set_value("player", "classic_high_score", high_score)
 		config.save("user://savedata.cfg")
-	$starve_bar.value = get_player_starvation()
-	$Panel/score.text = "Score: %d" % score
-	$Panel/high_score.text = "High Score: %d" % high_score
-	$Panel/health.text = "X %d" % $player.get_health()
+	$CanvasLayer/starve_bar.value = get_player_starvation()
+	$CanvasLayer/Panel/score.text = "Score: %d" % score
+	$CanvasLayer/Panel/high_score.text = "High Score: %d" % high_score
+	$CanvasLayer/Panel/health.text = "X %d" % $player.get_health()
 	
 # heals player from world node to save some brain power
 func heal_player():
@@ -37,8 +37,8 @@ func get_player_starvation() -> int:
 
 # Final hud update when dead
 func update_hud_when_dead():
-	$Panel/score.text = "Score: %d" % score
-	$Panel/health.text = "X %d" % $player.get_health()
+	$CanvasLayer/Panel/score.text = "Score: %d" % score
+	$CanvasLayer/Panel/health.text = "X %d" % $player.get_health()
 	config.set_value("player", "classic_high_score", high_score)
 	config.save("user://savedata.cfg")
 	

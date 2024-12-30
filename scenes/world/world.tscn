@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dj4vdaxwdewiu"]
+[gd_scene load_steps=12 format=3 uid="uid://dj4vdaxwdewiu"]
 
 [ext_resource type="Script" path="res://scripts/world/collision_polygon_2d.gd" id="1_4hx4q"]
 [ext_resource type="Script" path="res://scripts/world/world.gd" id="1_gcfhd"]
@@ -8,6 +8,20 @@
 [ext_resource type="Texture2D" uid="uid://cgyve4kk648yh" path="res://art/world/sky.png" id="5_ou8na"]
 [ext_resource type="Texture2D" uid="uid://bfig4ppqc525o" path="res://art/world/health.png" id="7_tqa8c"]
 [ext_resource type="Texture2D" uid="uid://djpnypv17cuuo" path="res://art/world/starve_icon.png" id="8_s7dsv"]
+
+[sub_resource type="Environment" id="Environment_ix3ld"]
+background_mode = 3
+background_canvas_max_layer = 1
+tonemap_mode = 2
+tonemap_exposure = 0.7
+tonemap_white = 1.78
+glow_enabled = true
+glow_strength = 0.9
+glow_bloom = 0.08
+glow_blend_mode = 1
+glow_hdr_threshold = 0.65
+glow_hdr_luminance_cap = 1.22
+adjustment_enabled = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wl38v"]
 bg_color = Color(0, 0, 0, 1)
@@ -43,11 +57,17 @@ texture = ExtResource("5_ou8na")
 position = Vector2(961, 540)
 texture = ExtResource("5_2afuy")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ix3ld")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="high_score" type="Label" parent="Panel"]
+[node name="high_score" type="Label" parent="CanvasLayer/Panel"]
 texture_filter = 5
 layout_mode = 0
 offset_left = 612.0
@@ -62,7 +82,7 @@ theme_override_font_sizes/font_size = 20
 text = "High Score: 0"
 horizontal_alignment = 2
 
-[node name="score" type="Label" parent="Panel"]
+[node name="score" type="Label" parent="CanvasLayer/Panel"]
 texture_filter = 5
 texture_repeat = 1
 layout_mode = 0
@@ -78,14 +98,14 @@ theme_override_font_sizes/font_size = 20
 text = "Score: 0"
 horizontal_alignment = 2
 
-[node name="health_icon" type="Sprite2D" parent="Panel"]
+[node name="health_icon" type="Sprite2D" parent="CanvasLayer/Panel"]
 texture_filter = 1
 texture_repeat = 1
 position = Vector2(51, 49)
 scale = Vector2(3, 3)
 texture = ExtResource("7_tqa8c")
 
-[node name="health" type="Label" parent="Panel"]
+[node name="health" type="Label" parent="CanvasLayer/Panel"]
 texture_filter = 1
 texture_repeat = 1
 layout_mode = 0
@@ -100,7 +120,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "X 3"
 
-[node name="starve_bar" type="ProgressBar" parent="."]
+[node name="starve_bar" type="ProgressBar" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0.74902)
 offset_left = 109.0
 offset_top = 104.0
@@ -114,7 +134,7 @@ value = 50.0
 rounded = true
 show_percentage = false
 
-[node name="starve_icon" type="Sprite2D" parent="."]
+[node name="starve_icon" type="Sprite2D" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0.901961)
 texture_filter = 1
 position = Vector2(58, 127)
