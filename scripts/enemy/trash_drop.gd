@@ -9,4 +9,13 @@ func timer_timeout_event():
 
 func attacked():
 	self.get_parent().get_parent().get_parent().score += 1
-	$drop_component._on_delete_timer_timeout()
+	particle_event()
+	
+	#$drop_component._on_delete_timer_timeout()
+	
+func particle_event():
+	$CPUParticles2D.emitting = true
+	$StaticBody2D/CollisionShape2D.set_deferred("disabled",true)
+	$Sprite2D.visible = false
+	$drop_component.isActive = false
+	$drop_component.particle_timer.start()
