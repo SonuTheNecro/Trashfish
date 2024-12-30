@@ -22,5 +22,6 @@ func attacked():
 	self.get_parent().get_parent().get_parent().score += 1
 	$drop_component.delete_timer.start()
 	$drop_component.isActive = false
-	self.timer_timeout_event()
+	$drop_component.active_timer.stop()
+	$drop_component.active_timer.emit_signal("timeout")
 	
