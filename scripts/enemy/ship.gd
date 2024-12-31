@@ -26,11 +26,11 @@ func _process(delta: float) -> void:
 	match state:
 		0:
 			if self.id == 4 or self.id == 3:
-				get_parent().get_child(1).play("swim")
+				get_parent().animated_sprite.play("swim")
 			nextX = randi() % 1300 + 450
 			state = 1
 			direction = 1 if get_parent().global_position.x - nextX  <= 0 else -1 # Go Left if we are to the right, otherwise go right
-			get_parent().get_node("AnimatedSprite2D").flip_h = true if direction == 1 else false
+			get_parent().animated_sprite.flip_h = true if direction == 1 else false
 			return
 		# We have a spot to go to but we aren't there yet
 		1:
@@ -43,7 +43,7 @@ func _process(delta: float) -> void:
 		2:
 			# Karl Jacobs has an additional animation
 			if self.id == 4 or self.id == 3:
-				get_parent().get_child(1).play("default")
+				get_parent().animated_sprite.play("swim")
 			# Wait for some time if we'd like
 			if $wait_timer.time_left > 0.01 and not $wait_timer.is_stopped():
 				return
@@ -58,7 +58,7 @@ func _process(delta: float) -> void:
 			if self.counter <= 0:
 				# Reset Karl Jacobs Animation
 				if self.id == 4 or self.id == 3:
-					self.get_parent().get_node("AnimatedSprite2D").play("swim")
+					self.get_parent().animated_sprite.play("swim")
 				self.state = 4
 				nextX = randi() % 2
 				nextX = -100 if nextX == 0 else 2000
@@ -69,7 +69,7 @@ func _process(delta: float) -> void:
 			self.get_parent().global_position.x += direction * speed * delta
 			if check_in_range(self.get_parent().global_position.x,nextX, speed * delta):
 				state = 5
-			get_parent().get_node("AnimatedSprite2D").flip_h = true if direction == 1 else false
+			get_parent().animated_sprite.flip_h = true if direction == 1 else false
 			return
 		# We are at our despawn position, so despawn
 		5:

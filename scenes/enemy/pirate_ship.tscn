@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bk0k8v1urwir0"]
 
-[ext_resource type="Script" path="res://scripts/enemy/kris_ship.gd" id="1_q23a1"]
+[ext_resource type="Script" path="res://scripts/enemy/pirate_ship.gd" id="1_q23a1"]
 [ext_resource type="PackedScene" uid="uid://0ncg7uw24q8j" path="res://scenes/enemy/ship.tscn" id="2_ufgkj"]
 [ext_resource type="Texture2D" uid="uid://byjdlmvhxny27" path="res://art/enemy/pirate_ship_idle.png" id="3_j458q"]
 [ext_resource type="Texture2D" uid="uid://boroqd11gqqsc" path="res://art/enemy/pirate_ship_moving.png" id="4_jvufk"]

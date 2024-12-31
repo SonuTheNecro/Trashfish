@@ -10,7 +10,8 @@ var health_ui : Label
 var player : CharacterBody2D
 func _ready() -> void:
 	config = ConfigFile.new()
-	
+	# Get all the nodes at the beginning, so we don't need to reget em 
+	# Also it helps when I inevitablely move shit around
 	starve_bar = get_node("CanvasLayer/starve_bar")
 	score_ui = get_node("CanvasLayer/Panel/score")
 	high_score_ui = get_node("CanvasLayer/Panel/high_score")

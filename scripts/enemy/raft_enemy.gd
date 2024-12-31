@@ -9,9 +9,8 @@ var bullets_left : int = 2
 @export var speed : int = 100
 const play_slot_scene = preload("res://scenes/enemy/bullet.tscn")
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$raft.play("idle")
+	raft.play("idle")
 	var spot_on_screen_to_spawn_at : int = randi() % 2
 	bullets_left += randi() % 3
 	speed += randi() % 150
@@ -42,10 +41,10 @@ func _process(delta: float) -> void:
 		2:
 			if bullets_left == 0:
 				state = 3
-				$shoot_timer.stop()
+				shoot_timer.stop()
 				return
-			if $shoot_timer.is_stopped():
-				$shoot_timer.start()
+			if shoot_timer.is_stopped():
+				shoot_timer.start()
 			return
 		3:
 			nextX = randi() % 2
@@ -66,7 +65,7 @@ func _process(delta: float) -> void:
 
 # After timer ends, have the gun fire a bullet towards the player and restart the timer
 func _on_shoot_timer_timeout() -> void:
-	$gun.play("fire")
+	gun.play("fire")
 	bullets_left -= 1
 	var bullet = play_slot_scene.instantiate()
 	self.add_child(bullet)
@@ -86,4 +85,4 @@ func flip():
 	var old_direction = get_node("raft").flip_h
 	get_node("raft").flip_h = true if direction == 1 else false
 	if old_direction != get_node("raft").flip_h:
-		$gun.position.x *= -1
+		gun.position.x *= -1
