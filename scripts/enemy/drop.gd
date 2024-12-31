@@ -10,8 +10,12 @@ var active_timer : Timer
 var delete_timer: Timer
 var particle_timer: Timer
 var xDirection : float
-# Called when the node enters the scene tree for the first time.
+var ship_component : Node2D
+
 func _ready() -> void:
+	
+	ship_component = self.get_parent().get_parent().ship_component
+	
 	xDirection = cos(randi() % 4)
 	active_timer = Timer.new()
 	active_timer.wait_time = timer_length
@@ -63,10 +67,10 @@ func _on_delete_timer_timeout() -> void:
 	if get_parent().get_parent() == null:
 		self.get_parent().queue_free()
 	# Karl Jacobs Check
-	if self.get_parent().get_parent().get_node("ship_component").id == 4:
-		self.get_parent().get_parent().get_node("AnimatedSprite2D").play("default")
+	if self.ship_component.id == 4:
+		self.get_parent().get_parent().animated_sprite.play("default")
 	
-	self.get_parent().get_parent().get_node("ship_component").counter += -1
-	self.get_parent().get_parent().get_node("ship_component").state = 0
-	self.get_parent().get_parent().get_node("ship_component").hasWaited = false
+	ship_component.counter += -1
+	ship_component.state = 0
+	ship_component.hasWaited = false
 	self.get_parent().queue_free()

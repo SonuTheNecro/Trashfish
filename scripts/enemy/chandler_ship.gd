@@ -2,14 +2,11 @@ extends Node2D
 const spawnable_drop1 = preload("res://scenes/enemy/trash_drop.tscn")
 const spawnable_drop2 = preload("res://scenes/enemy/recycle_drop.tscn")
 #const spawnable_drop2 = preload("res://scenes/enemy/heart_drop.tscn")
-var animated_sprite : AnimatedSprite2D
-var ship_component  : Node2D
-var wait_timer      : Timer
+@onready var animated_sprite : AnimatedSprite2D = get_node("AnimatedSprite2D")
+@onready var ship_component  : Node2D           = get_node("ship_component")
+@onready var wait_timer      : Timer            = get_node("ship_component/wait_timer")
 var parent_score : int
 func _ready() -> void:
-	animated_sprite = get_node("AnimatedSprite2D")
-	ship_component  = get_node("ship_component")
-	wait_timer      = get_node("ship_component/wait_timer")
 	parent_score = get_parent().score
 	# as the game goes on, the chandler ship will drop less and less point trash, this is counteracted since there will be more of them
 	match parent_score / 20:
