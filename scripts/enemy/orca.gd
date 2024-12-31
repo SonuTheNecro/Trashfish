@@ -31,7 +31,7 @@ func _ready():
 func _process(delta):
 	self.global_position += direction * speed * delta
 	
-	if global_position.x > 2000:
+	if global_position.x > 2000 or global_position.x < -100:
 		self.get_parent().fish_returned += 1
 		self.queue_free()
 
