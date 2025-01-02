@@ -23,7 +23,7 @@ func _ready() -> void:
 
 func _on_delete_timer_timeout() -> void:
 	score = get_parent().score
-	var a = timer_wait_time - (score / 30)
+	var a = int(timer_wait_time - (score / 30.0))
 	if (a <= 1):
 		a = 1
 	self.timer.wait_time = a
@@ -37,7 +37,7 @@ func _on_delete_timer_timeout() -> void:
 func spawn_new_enemy() -> void:
 	# so we can have ramping difficulty, so its harder enemies the further u go
 	
-	var c = score / 5
+	var c = int(score / 5.0)
 	
 	if score % 30 == 0 and score != 0:
 		max_entities += 1

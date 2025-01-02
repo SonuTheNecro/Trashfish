@@ -9,7 +9,7 @@ var parent_score : int
 func _ready() -> void:
 	parent_score = get_parent().score
 	# as the game goes on, the chandler ship will drop less and less point trash, this is counteracted since there will be more of them
-	match parent_score / 20:
+	match int(parent_score / 20.0):
 		0:
 			ship_component.counter += randi() % 6
 		1:

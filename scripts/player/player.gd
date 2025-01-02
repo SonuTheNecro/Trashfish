@@ -6,7 +6,7 @@ var starve : int = 100
 @export var max_starve : int = 100
 @export var max_health : int = 10
 @export var world_id : int = 3
-@export var honey_speed : int = 2.5
+@export var honey_speed : float = 2.5
 @export var ice_speed : int = 5
 
 var isAttacking : bool = false
@@ -18,12 +18,13 @@ var isRolling : bool = false
 var drop
 var direction : Vector2
 const trash_can = preload("res://scenes/player/trash_can.tscn")
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	$debuff_master/honey.play("default")
 	$debuff_master/ice.play("default")
+	player_shader(0,0,0,0,0)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _physics_process(delta):
 	if (Input.is_action_just_pressed("restart")):
 		get_tree().change_scene_to_file("res://scenes/world/world.tscn")
@@ -88,7 +89,7 @@ func flip(value: bool):
 		
 # Handles the Player rolling logic
 func roll():
-	self.starve -= self.max_starve / 2
+	self.starve -= int(self.max_starve / 2.0)
 	isRolling = true
 	self.speed *= 1.8
 	self.velocity = speed * direction

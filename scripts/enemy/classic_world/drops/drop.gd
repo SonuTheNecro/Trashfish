@@ -43,7 +43,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not isActive:
 		return
-	self.get_parent().global_position.x += xDirection *(fall_speed / 2) * delta * -1
+	self.get_parent().global_position.x += xDirection *(fall_speed / 2.0) * delta * -1.0
 	self.get_parent().global_position.y += fall_speed * delta
 	self.get_parent().rotation_degrees += rotation_speed
 	

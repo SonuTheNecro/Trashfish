@@ -107,12 +107,12 @@ func get_spawnable_drop():
 	drop = get_parent().spawnable_drop.instantiate()
 	
 
-func check_in_range(a : float, b : float , range : int ) -> bool:
+func check_in_range(a : float, b : float , range_of_pos : float) -> bool:
 	if a > b:
-		if a - b < range + 1:
+		if a - b < range_of_pos + 1:
 			return true
 	if a < b:
-		if b - a < range + 1:
+		if b - a < range_of_pos + 1:
 			return true
 	return false
 		

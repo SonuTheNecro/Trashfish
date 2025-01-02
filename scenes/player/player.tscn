@@ -13,8 +13,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_deb2k"]
 resource_local_to_scene = true
 shader = ExtResource("2_6cm53")
-shader_parameter/flash_color = Color(0.662745, 0.509804, 0.168627, 1)
-shader_parameter/flash_modifier = 1.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uclss"]
 atlas = ExtResource("2_y0gff")
@@ -205,8 +205,8 @@ animations = [{
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7lv3r"]
 resource_local_to_scene = true
 shader = ExtResource("2_6cm53")
-shader_parameter/flash_color = Color(0.768627, 0, 0, 1)
-shader_parameter/flash_modifier = 1.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bs1xw"]
 atlas = ExtResource("4_17ldg")
