@@ -1,72 +1,76 @@
-[gd_scene load_steps=12 format=3 uid="uid://bcii3lc3s0ugh"]
+[gd_scene load_steps=12 format=3 uid="uid://honey-drop"]
 
-[ext_resource type="Script" path="res://scripts/enemy/classic_world/drops/dynamite_drop.gd" id="1_q8s6r"]
-[ext_resource type="PackedScene" uid="uid://byt03rernj7cq" path="res://scenes/enemy/classic_world/drops/drop.tscn" id="1_rauiw"]
-[ext_resource type="Texture2D" uid="uid://274ie1nnbdaf" path="res://art/enemy/classic_world/explosion.png" id="3_hrs3s"]
-[ext_resource type="Texture2D" uid="uid://yd8oda208dfq" path="res://art/enemy/classic_world/dynamite.png" id="3_j8c31"]
+[ext_resource type="Script" path="res://scripts/enemy/classic_world/drops/honey_drop.gd" id="1_drop_script"]
+[ext_resource type="PackedScene" uid="uid://byt03rernj7cq" path="res://scenes/enemy/classic_world/drops/drop.tscn" id="1_drop_scene"]
+[ext_resource type="Texture2D" uid="uid://honey_splash" path="res://art/enemy/classic_world/honey_splash.png" id="tex_honey_splash"]
+[ext_resource type="Texture2D" uid="uid://honey_drop" path="res://art/enemy/classic_world/honey_drop.png" id="tex_honey_drop"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0w7mr"]
-atlas = ExtResource("3_hrs3s")
+[sub_resource type="AtlasTexture" id="AtlasTexture_splash"]
+atlas = ExtResource("tex_honey_splash")
 region = Rect2(0, 0, 144, 69)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sa6t1"]
-atlas = ExtResource("3_j8c31")
+[sub_resource type="AtlasTexture" id="AtlasTexture_dropA"]
+atlas = ExtResource("tex_honey_drop")
 region = Rect2(0, 0, 144, 69)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nqivc"]
-atlas = ExtResource("3_j8c31")
+[sub_resource type="AtlasTexture" id="AtlasTexture_dropB"]
+atlas = ExtResource("tex_honey_drop")
 region = Rect2(144, 0, 144, 69)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rmn5w"]
-atlas = ExtResource("3_j8c31")
+[sub_resource type="AtlasTexture" id="AtlasTexture_dropC"]
+atlas = ExtResource("tex_honey_drop")
 region = Rect2(288, 0, 144, 69)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_kihmo"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0w7mr")
-}],
-"loop": true,
-"name": &"explosion",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sa6t1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nqivc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rmn5w")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 6.0
-}]
+[sub_resource type="SpriteFrames" id="SpriteFrames_honey"]
+animations = [
+  {
+    "frames": [ { "duration": 1.0, "texture": SubResource("AtlasTexture_splash") } ],
+    "loop": true,
+    "name": &"splash",
+    "speed": 5.0
+  },
+  {
+    "frames": [
+      { "duration": 1.0, "texture": SubResource("AtlasTexture_dropA") },
+      { "duration": 1.0, "texture": SubResource("AtlasTexture_dropB") },
+      { "duration": 1.0, "texture": SubResource("AtlasTexture_dropC") }
+    ],
+    "loop": true,
+    "name": &"idle",
+    "speed": 6.0
+  }
+]
 
-[sub_resource type="Curve" id="Curve_qj377"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.988764, 0.395604), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_scale"]
+_data = [ Vector2(0, 1), 0.0, 0.0, 0, 0,
+          Vector2(1, 0.4), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Gradient" id="Gradient_18ot2"]
-offsets = PackedFloat32Array(0.14, 0.48, 1)
-colors = PackedColorArray(0.815686, 0, 0, 1, 0.907606, 0.321329, 0, 1, 1, 1, 0.168627, 1)
+[sub_resource type="Gradient" id="Gradient_honey"]
+# This gradient transitions from a golden color to a deeper orange, with partial transparency.
+offsets = PackedFloat32Array(0.0, 0.6, 1.0)
+colors = PackedColorArray(
+  # color 0: bright golden
+  1, 0.82, 0.0, 1,
+  # color 1: deeper orange
+  1, 0.64, 0.0, 1,
+  # color 2: fade out more
+  1, 0.55, 0.0, 0.4
+)
 
-[node name="dynamite_drop" type="Node2D" groups=["drop"]]
-script = ExtResource("1_q8s6r")
+[node name="honey_drop" type="Node2D" groups=["drop"]]
+script = ExtResource("1_drop_script")
 
-[node name="drop_component" parent="." instance=ExtResource("1_rauiw")]
+[node name="drop_component" parent="." instance=ExtResource("1_drop_scene")]
 timer_length = 6.0
 delete_timer_length = 3.0
-fall_speed = 75
-rotation_speed = 0.25
+fall_speed = 65       # Adjusted for honey (a bit slower than dynamite)
+rotation_speed = 0.15 # Slower spin for a 'drip' effect
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -24)
-sprite_frames = SubResource("SpriteFrames_kihmo")
+sprite_frames = SubResource("SpriteFrames_honey")
 animation = &"idle"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["drop"]]
@@ -74,26 +78,28 @@ animation = &"idle"
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(-1, -29, 3, -29, 6, -27, 6, -2, 2, -1, 2, -1, 0, -1, -4, -2, -4, -26)
 
-[node name="explosion_hitbox" type="Area2D" parent="."]
+[node name="hitbox_area" type="Area2D" parent="."]
+# updated from "explosion_hitbox" to something more honey
+# or keep original if you want the same collision logic
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="explosion_hitbox"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="hitbox_area"]
 polygon = PackedVector2Array(-5, -40, -10, -40, -22, -42, -23, -41, -12, -32, -14, -31, -14, -33, -17, -32, -20, -31, -22, -31, -24, -29, -13, -21, -27, -21, -28, -20, -14, -14, -28, -10, -14, -6, -25, -3, -23, 0, -12, 1, -8, 1, -14, 7, -8, 9, 6, 4, 9, 8, 12, 8, 13, 4, 15, -1, 22, -2, 31, -3, 32, -4, 17, -10, 35, -19, 34, -20, 33, -21, 28, -22, 22, -22, 21, -23, 18, -23, 16, -24, 15, -25, 18, -27, 20, -28, 21, -29, 22, -30, 24, -30, 25, -31, 29, -37, 29, -38, 28, -39, 25, -39, 25, -40, 10, -40, 9, -39, 6, -39, 4, -40, 4, -42, 5, -42, 5, -44, 1, -48, -2, -43)
 disabled = true
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2(-1, -16)
 emitting = false
-amount = 50
+amount = 45
 one_shot = true
-explosiveness = 1.0
+explosiveness = 0.7    # Slightly less explosive, honey is more splat than an explosion
 fixed_fps = 60
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 25.0
-initial_velocity_max = 70.0
-scale_amount_min = 10.0
-scale_amount_max = 16.0
-scale_amount_curve = SubResource("Curve_qj377")
-color_ramp = SubResource("Gradient_18ot2")
+spread = 35.0         # narrower spread than an explosion, more "dripping"
+gravity = Vector2(0, 100) # gently pulling down
+initial_velocity_min = 20.0
+initial_velocity_max = 45.0
+scale_amount_min = 0.5
+scale_amount_max = 1.2
+scale_amount_curve = SubResource("Curve_scale")
+color_ramp = SubResource("Gradient_honey")
 
-[connection signal="body_entered" from="explosion_hitbox" to="." method="_on_explosion_hitbox_body_entered"]
+[connection signal="body_entered" from="hitbox_area" to="." method="_on_hitbox_area_body_entered"]
