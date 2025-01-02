@@ -153,19 +153,13 @@ func set_debuff(debuff : String) -> void:
 func damage_flash_body():
 	if health <= 0:
 		return
-	$body.material.set_shader_parameter("flash_color",Color(0.76,0,0,1.0))
-	$body.material.set_shader_parameter("flash_modifer", 0.7)
-	$head.material.set_shader_parameter("flash_color",Color(0.76,0,0,1.0))
-	$head.material.set_shader_parameter("flash_modifer", 0.7)
+	player_shader(0.76,0,0,1.0, 0.7)
 	$body/flash_timer.start()
 # flashes player body green when healed
 func heal_flash_body():
 	if health <= 0 or health > max_health:
 		return
-	$body.material.set_shader_parameter("flash_color",Color(0.13,0.86,0.14,1.0))
-	$body.material.set_shader_parameter("flash_modifer", 0.7)
-	$head.material.set_shader_parameter("flash_color",Color(0.13,0.86,0.14,1.0))
-	$head.material.set_shader_parameter("flash_modifer", 0.7)
+	player_shader(0.13,0.86,0.14,1.0, 0.7)
 	$body/flash_timer.start()
 
 # When the attack timer resets (CD), we should turn off hitboxes
@@ -198,8 +192,8 @@ func _on_ice_timer_timeout() -> void:
 
 
 func _on_flash_timer_timeout() -> void:
-	$body.material.set_shader_parameter("flash_modifer", 0)
-	$head.material.set_shader_parameter("flash_modifer", 0)
+	$body.material.set_shader_parameter("flash_modifier", 0)
+	$head.material.set_shader_parameter("flash_modifier", 0)
 	
 func _on_roll_timer_timeout():
 	$head.visible = true
@@ -209,12 +203,14 @@ func _on_roll_timer_timeout():
 
 # lets player know they can roll again
 func _on_roll_cooldown_timer_timeout():
-	$body.material.set_shader_parameter("flash_color",Color(0.66,0.51,0.17,1.0))
-	$body.material.set_shader_parameter("flash_modifer", 0.7)
-	$head.material.set_shader_parameter("flash_color",Color(0.66,0.51,0.17,1.0))
-	$head.material.set_shader_parameter("flash_modifer", 0.7)
+	player_shader(0.66, 0.51, 0.17, 1.0, 0.7)
 	$body/flash_timer.start(0.5)
 
+func player_shader(a : float, b : float, c : float, d : float, e : float):
+	$body.material.set_shader_parameter("flash_color",Color(a,b,c,d))
+	$body.material.set_shader_parameter("flash_modifier", e)
+	$head.material.set_shader_parameter("flash_color",Color(a,b,c,d))
+	$head.material.set_shader_parameter("flash_modifier", e)
 # every second we will take a bit of starvation
 # default is you take a hit every 20 seconds of not eating
 func _on_starve_timer_timeout():
