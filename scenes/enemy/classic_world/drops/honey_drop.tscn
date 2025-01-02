@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bp1hsruqn2ikn"]
+[gd_scene load_steps=13 format=3 uid="uid://bp1hsruqn2ikn"]
 
 [ext_resource type="Script" path="res://scripts/enemy/classic_world/drops/honey_drop.gd" id="1_fjm2x"]
 [ext_resource type="PackedScene" uid="uid://byt03rernj7cq" path="res://scenes/enemy/classic_world/drops/drop.tscn" id="1_mb7vy"]
@@ -39,12 +39,23 @@ size = Vector2(30, 47)
 radius = 41.0
 height = 138.0
 
+[sub_resource type="Curve" id="Curve_dc5av"]
+_data = [Vector2(0.0168539, 1), 0.0, 0.0, 0, 0, Vector2(0.994382, 0.142857), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_kyu12"]
+offsets = PackedFloat32Array(0, 0.7, 0.84, 0.986667)
+colors = PackedColorArray(0.602962, 0.281067, 0.026833, 1, 0.882353, 0.419608, 0.00784314, 1, 1, 1, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_w4mkw"]
+colors = PackedColorArray(0.688344, 0.381864, 0.00908853, 1, 0.79122, 0.573662, 0.148129, 1)
+
 [node name="honey_drop" type="Node2D"]
 script = ExtResource("1_fjm2x")
 
 [node name="drop_component" parent="." instance=ExtResource("1_mb7vy")]
 timer_length = 2.0
-delete_timer_length = 1.0
+delete_timer_length = 2.0
 fall_speed = 10
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -67,5 +78,22 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_hyw57")
 disabled = true
 debug_color = Color(3.85046e-07, 0.598513, 0.708486, 0.42)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, -18)
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 60.0
+scale_amount_min = 10.0
+scale_amount_max = 16.0
+scale_amount_curve = SubResource("Curve_dc5av")
+color_ramp = SubResource("Gradient_kyu12")
+color_initial_ramp = SubResource("Gradient_w4mkw")
 
 [connection signal="body_entered" from="explosion_hitbox" to="." method="_on_explosion_hitbox_body_entered"]

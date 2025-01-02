@@ -13,6 +13,7 @@ func timer_timeout_event():
 	get_node("explosion_hitbox/CollisionShape2D").set_deferred("disabled", false)
 	animated_sprite.play("explosion")
 	get_node("StaticBody2D/CollisionShape2D").set_deferred("disabled", true)
+	$CPUParticles2D.emitting = true
 
 func _on_explosion_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
@@ -25,5 +26,6 @@ func attacked():
 	drop_component.isActive = false
 	$StaticBody2D.set_deferred("disable_mode",true)
 	$StaticBody2D/CollisionShape2D.set_deferred("disabled",true)
-	self.timer_timeout_event()
+	self.drop_component.active_timer.stop()
+	self.drop_component.active_timer.emit_signal("timeout")
 	

@@ -78,7 +78,7 @@ animations = [{
 script = ExtResource("1_rbg3h")
 
 [node name="ship_component" parent="." instance=ExtResource("1_1s1xa")]
-script = null
+id = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
