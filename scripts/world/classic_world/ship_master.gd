@@ -12,6 +12,7 @@ var score : int
 var timer : Timer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	randomize()
 	self.timer = Timer.new()
 	self.timer.wait_time = timer_wait_time
 	self.timer.one_shot = true

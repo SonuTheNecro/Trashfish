@@ -40,7 +40,7 @@ radius = 31.0
 height = 96.0
 
 [sub_resource type="Curve" id="Curve_dc5av"]
-_data = [Vector2(0.0168539, 1), 0.0, 0.0, 0, 0, Vector2(0.994382, 0.142857), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.0168539, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_kyu12"]
@@ -50,7 +50,7 @@ colors = PackedColorArray(0.602962, 0.281067, 0.026833, 1, 0.882353, 0.419608, 0
 [sub_resource type="Gradient" id="Gradient_w4mkw"]
 colors = PackedColorArray(0.688344, 0.381864, 0.00908853, 1, 0.79122, 0.573662, 0.148129, 1)
 
-[node name="honey_drop" type="Node2D"]
+[node name="honey_drop" type="Node2D" groups=["drop"]]
 script = ExtResource("1_fjm2x")
 
 [node name="drop_component" parent="." instance=ExtResource("1_mb7vy")]

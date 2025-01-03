@@ -64,7 +64,7 @@ colors = PackedColorArray(0.0810786, 0, 0.961294, 1, 0, 0.705595, 0.813836, 1, 0
 [sub_resource type="Gradient" id="Gradient_og2d8"]
 colors = PackedColorArray(0, 0.313611, 0.62613, 1, 1, 1, 1, 1)
 
-[node name="ice_drop" type="Node2D"]
+[node name="ice_drop" type="Node2D" groups=["drop"]]
 script = ExtResource("1_wgiwt")
 
 [node name="drop_component" parent="." instance=ExtResource("1_25fhf")]

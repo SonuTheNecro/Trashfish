@@ -66,6 +66,7 @@ func _process(delta: float) -> void:
 			return
 		# Move towards our despawn position
 		4:
+			delete_all_drop_children()
 			self.get_parent().global_position.x += direction * speed * delta
 			if check_in_range(self.get_parent().global_position.x,nextX, speed * delta):
 				state = 5
@@ -120,3 +121,12 @@ func check_in_range(a : float, b : float , range_of_pos : float) -> bool:
 
 func _on_wait_timer_timeout() -> void:
 	hasWaited = true
+
+# Deletes all the drops when we stop moving so it looks c l e a n
+func delete_all_drop_children() -> void:
+	for x in get_parent().get_children():
+		#print(x)
+		if x.is_in_group("drop"):
+			x.queue_free()
+			
+		
