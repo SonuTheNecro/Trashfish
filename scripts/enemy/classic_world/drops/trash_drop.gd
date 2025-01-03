@@ -11,8 +11,6 @@ func attacked():
 	self.get_parent().get_parent().get_parent().score += 1
 	particle_event()
 	
-	#$drop_component._on_delete_timer_timeout()
-	
 func particle_event():
 	$CPUParticles2D.emitting = true
 	$StaticBody2D/CollisionShape2D.set_deferred("disabled",true)

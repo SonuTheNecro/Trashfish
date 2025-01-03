@@ -128,5 +128,6 @@ func delete_all_drop_children() -> void:
 		#print(x)
 		if x.is_in_group("drop"):
 			x.queue_free()
+			return #return since there is usually only 1 drop so we can just return to save time
 			
 		

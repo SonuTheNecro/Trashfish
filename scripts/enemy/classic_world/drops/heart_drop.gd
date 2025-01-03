@@ -13,4 +13,12 @@ func attacked():
 	#     Ship       Ship master   world
 	self.get_parent().get_parent().get_parent().score += 1
 	self.get_parent().get_parent().get_parent().heal_player()
-	$drop_component._on_delete_timer_timeout()
+	particle_event()
+
+#Basically this is an extra event between the activeness and deleteness so particles can properly appear for certain objects
+func particle_event():
+	$CPUParticles2D.emitting = true
+	$StaticBody2D/CollisionShape2D.set_deferred("disabled",true)
+	$Sprite2D.visible = false
+	$drop_component.isActive = false
+	$drop_component.particle_timer.start()
