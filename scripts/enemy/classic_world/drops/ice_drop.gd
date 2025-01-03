@@ -14,6 +14,7 @@ func timer_timeout_event():
 	get_node("explosion_hitbox/CollisionPolygon2D").set_deferred("disabled", false)
 	animated_sprite.play("explosion")
 	get_node("StaticBody2D/CollisionPolygon2D").set_deferred("disabled", true)
+	$CPUParticles2D.emitting = true
 
 func _on_explosion_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):

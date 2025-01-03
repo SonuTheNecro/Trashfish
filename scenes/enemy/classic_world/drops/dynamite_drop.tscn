@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bcii3lc3s0ugh"]
+[gd_scene load_steps=13 format=3 uid="uid://bcii3lc3s0ugh"]
 
 [ext_resource type="Script" path="res://scripts/enemy/classic_world/drops/dynamite_drop.gd" id="1_q8s6r"]
 [ext_resource type="PackedScene" uid="uid://byt03rernj7cq" path="res://scenes/enemy/classic_world/drops/drop.tscn" id="1_rauiw"]
@@ -47,12 +47,15 @@ animations = [{
 }]
 
 [sub_resource type="Curve" id="Curve_qj377"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.988764, 0.395604), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_18ot2"]
 offsets = PackedFloat32Array(0.14, 0.48, 1)
 colors = PackedColorArray(0.815686, 0, 0, 1, 0.907606, 0.321329, 0, 1, 1, 1, 0.168627, 1)
+
+[sub_resource type="Gradient" id="Gradient_6b47d"]
+colors = PackedColorArray(0.909674, 0.0792805, 0, 1, 0.617298, 0.431739, 0.196551, 1)
 
 [node name="dynamite_drop" type="Node2D" groups=["drop"]]
 script = ExtResource("1_q8s6r")
@@ -91,9 +94,10 @@ spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 25.0
 initial_velocity_max = 70.0
-scale_amount_min = 10.0
-scale_amount_max = 16.0
+scale_amount_min = 8.0
+scale_amount_max = 14.0
 scale_amount_curve = SubResource("Curve_qj377")
 color_ramp = SubResource("Gradient_18ot2")
+color_initial_ramp = SubResource("Gradient_6b47d")
 
 [connection signal="body_entered" from="explosion_hitbox" to="." method="_on_explosion_hitbox_body_entered"]
