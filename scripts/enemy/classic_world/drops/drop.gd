@@ -3,7 +3,9 @@ extends Node2D
 @export var delete_timer_length : float
 @export var particle_timer_length : float = 0.01
 @export var fall_speed : int
-@export var rotation_speed : float
+
+var rotation_speed : float
+var horizontal_distance_component : int
 
 var isActive : bool = true
 var active_timer : Timer
@@ -14,36 +16,47 @@ var ship_component : Node2D
 
 func _ready() -> void:
 	
-	ship_component = self.get_parent().get_parent().ship_component
+	ship_component = get_parent().get_parent().ship_component
 	
 	xDirection = cos(randi() % 4)
 	active_timer = Timer.new()
 	active_timer.wait_time = timer_length
 	active_timer.one_shot = true
-	self.add_child(active_timer)
+	add_child(active_timer)
 	active_timer.timeout.connect(_on_active_timer_timeout)
 	active_timer.start()
 	
 	delete_timer = Timer.new()
 	delete_timer .wait_time = delete_timer_length
 	delete_timer .one_shot = true
-	self.add_child(delete_timer)
+	add_child(delete_timer)
 	delete_timer .timeout.connect(_on_delete_timer_timeout)
 	active_timer.start()
-	self.get_parent().global_position.y = get_parent().global_position.y + 50
+	get_parent().global_position.y = get_parent().global_position.y + 50
 
 	if particle_timer_length != 0.01:
 		particle_timer = Timer.new()
 		particle_timer.wait_time = particle_timer_length
 		particle_timer.one_shot = true
-		self.add_child(particle_timer)
+		add_child(particle_timer)
 		particle_timer.timeout.connect(_on_particle_timer_timeout)
+	
+	# stores the horizontal part so we don't need to keep calculating it
+	horizontal_distance_component = xDirection * (fall_speed * 1.5) * -1.0
+	
+	# determines the rotation speed based on the falling speed
+	rotation_speed = (abs(horizontal_distance_component) / 62.0)
+		
+	# determines which direction the drop will rotate
+	match xDirection * -1.0 < 0:
+		true: rotation_speed *= -1
+		false: pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if not isActive:
 		return
-	self.get_parent().global_position.x += xDirection *(fall_speed / 2.0) * delta * -1.0
+	self.get_parent().global_position.x += horizontal_distance_component * delta
 	self.get_parent().global_position.y += fall_speed * delta
 	self.get_parent().rotation_degrees += rotation_speed
 	

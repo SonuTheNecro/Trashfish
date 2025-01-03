@@ -62,20 +62,20 @@ rotation_speed = 0.1
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(0, -29)
+position = Vector2(1, -8)
 sprite_frames = SubResource("SpriteFrames_2q26l")
-animation = &"explosion"
+animation = &"idle"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["drop"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0.095, -23.5)
+position = Vector2(1, -2)
 shape = SubResource("RectangleShape2D_sc50r")
 
 [node name="explosion_hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="explosion_hitbox"]
-position = Vector2(0, -29)
+position = Vector2(1, -8)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_hyw57")
 disabled = true
