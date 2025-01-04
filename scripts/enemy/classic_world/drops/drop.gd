@@ -5,7 +5,7 @@ extends Node2D
 @export var fall_speed : int
 
 var rotation_speed : float
-var horizontal_distance_component : int
+var horizontal_distance_component : float
 
 var isActive : bool = true
 var active_timer : Timer

@@ -25,6 +25,11 @@ func _process(delta: float) -> void:
 	# IF we aren't moving and we aren't dropping items, then we should find a new spot to go
 	match state:
 		0:
+			# this is for when we run out of things to drop so lets go to despawning state
+			if self.counter < 0:
+				state = 3
+				return
+			
 			if self.id == 4 or self.id == 3:
 				get_parent().animated_sprite.play("swim")
 			nextX = randi() % 1300 + 450
@@ -55,7 +60,7 @@ func _process(delta: float) -> void:
 		# We have run out of things to drop, so lets' be set to despawn!
 		3:
 			
-			if self.counter <= 0:
+			if self.counter < 0:
 				# Reset Karl Jacobs Animation
 				if self.id == 4 or self.id == 3:
 					self.get_parent().animated_sprite.play("swim")
@@ -66,7 +71,7 @@ func _process(delta: float) -> void:
 			return
 		# Move towards our despawn position
 		4:
-			delete_all_drop_children()
+			#delete_all_drop_children()
 			self.get_parent().global_position.x += direction * speed * delta
 			if check_in_range(self.get_parent().global_position.x,nextX, speed * delta):
 				state = 5
@@ -123,6 +128,7 @@ func _on_wait_timer_timeout() -> void:
 	hasWaited = true
 
 # Deletes all the drops when we stop moving so it looks c l e a n
+# turns out I was correct in my original report, this looks real jank but the problem is now inherently fixed instead of band-aid fixed
 func delete_all_drop_children() -> void:
 	for x in get_parent().get_children():
 		#print(x)
